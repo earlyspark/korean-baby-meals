@@ -68,5 +68,3 @@ A comprehensive toddler recipe website focused on Korean and Asian cuisine for c
 ---
 
 Built with ❤️ for parents feeding Korean flavors to their toddlers.
-
----
