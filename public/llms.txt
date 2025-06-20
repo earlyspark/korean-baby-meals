@@ -1,0 +1,32 @@
+# Korean Baby Meals - llms.txt
+
+## Site Description
+Korean Baby Meals is a specialized recipe website focused on Korean and Asian toddler recipes for children 12+ months old. The site features ingredient-based search functionality, allowing parents to find recipes based on pantry items they have available.
+
+## Key Features
+- **Ingredient Search**: Users can search for recipes by entering ingredients they have in their pantry
+- **Practical Filters**: 
+  - Eating Method: Finger foods, fork-friendly, spoon-friendly, combination
+  - Messiness Level: Clean, moderate, messy (with emoji indicators 🧽)
+  - Special Features: Freezer-friendly (🧊), food processor-friendly (🥘)
+- **Almost Matches**: Shows recipes that need only 1-2 additional ingredients
+- **Batch Cooking Focus**: All recipes emphasize preparation methods suitable for busy parents
+- **User Features**: Recipe ratings (1-5 stars), favorites, optional account system
+
+## Target Audience
+Parents of toddlers 12+ months, particularly Korean/mixed Asian families seeking practical, batch-cookable meals with authentic flavors adapted for young children.
+
+## Content Strategy
+- Recipes sourced and adapted from traditional Korean/Asian cuisine
+- Modified for toddler-appropriate textures, reduced sodium, and practical preparation
+- Focus on food processor-friendly techniques and freezer storage guidance
+- No age range filters needed (all content is 12+ months appropriate)
+
+## Technology
+- Next.js 14 with TypeScript
+- MySQL database for shared hosting compatibility
+- Responsive design optimized for both mobile and desktop use
+- SEO-friendly recipe URLs with slugs
+
+## Unique Value Proposition
+Combines authentic Korean flavors with practical parenting needs through intelligent search functionality and realistic filters for toddler feeding situations.
