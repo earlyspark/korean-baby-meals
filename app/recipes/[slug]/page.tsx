@@ -61,7 +61,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const recipe = await RecipeServerService.getRecipeBySlug(params.slug)
+  const awaitedParams = await params
+  const recipe = await RecipeServerService.getRecipeBySlug(awaitedParams.slug)
   
   if (!recipe) {
     return {
@@ -98,7 +99,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function RecipePage({ params }: { params: { slug: string } }) {
-  const recipe = await RecipeServerService.getRecipeBySlug(params.slug)
+  const awaitedParams = await params
+  const recipe = await RecipeServerService.getRecipeBySlug(awaitedParams.slug)
 
   if (!recipe) {
     notFound()
