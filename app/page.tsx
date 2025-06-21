@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: 'Korean Baby Meals',
     images: [
       {
-        url: '/og-home-image.jpg',
+        url: '/og-logo.png',
         width: 1200,
         height: 630,
         alt: 'Korean Baby Meals - Healthy recipes for babies and toddlers',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Korean Baby Meals | Healthy Korean Recipes for Babies & Toddlers',
     description: 'Discover nutritious Korean recipes perfect for babies and toddlers. Easy-to-follow recipes with baby-friendly ingredients, cooking tips, and storage instructions.',
-    images: ['/og-home-image.jpg'],
+    images: ['/og-logo.png'],
   },
   alternates: {
     canonical: 'https://koreanbabymeals.com',
