@@ -50,7 +50,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-              <section className="bg-sand-100 p-4 rounded-lg">
+            <section className="bg-sand-100 p-4 rounded-lg mt-6">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-3">
                   Get Started
                 </h2>
@@ -65,7 +65,6 @@ export default function AboutPage() {
                   Start Searching Recipes →
                 </Link>
               </section>
-            </div>
           </div>
         </div>
 
