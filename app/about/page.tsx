@@ -19,88 +19,36 @@ export default function AboutPage() {
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-600 mb-6">
-              Making Korean and Asian toddler meals simple, practical, and delicious for busy parents.
-            </p>
+            <div className="space-y-6 text-gray-600">
+              <p>
+                Hi, I&apos;m earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. I want meals and snacks that are nutritious (not overly processed), that I can prep in batches and freeze, because I work full-time, don&apos;t live near family, and definitely can&apos;t afford a personal chef.
+              </p>
 
-            <div className="space-y-6">
-              <section>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                  Our Mission
-                </h2>
-                <p className="text-gray-600">
-                  We believe that introducing toddlers to Korean and Asian flavors should be accessible and stress-free. 
-                  Our ingredient-based search helps you create nutritious, age-appropriate meals using what you already 
-                  have in your pantry.
-                </p>
-              </section>
+              <p>
+                I built this site in two nights using AI because I was tired of endlessly scrolling Instagram and Pinterest just to figure out what to make with half a zucchini and some leftover rice. Who has time for that??
+              </p>
 
-              <section>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                  Why Korean Baby Meals?
-                </h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">🤏 Practical Filters</h3>
-                    <p className="text-gray-600">
-                      Filter by eating method, messiness level, and special features like freezer-friendly 
-                      and food processor-friendly recipes.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">🥘 Batch Cooking Focus</h3>
-                    <p className="text-gray-600">
-                      All recipes are designed with busy parents in mind, emphasizing batch cooking 
-                      and easy meal prep.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">🔍 Smart Search</h3>
-                    <p className="text-gray-600">
-                      Find recipes by entering ingredients you have on hand. No more wondering 
-                      &quot;what can I make with this?&quot;
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">🧊 Storage Guidance</h3>
-                    <p className="text-gray-600">
-                      Every recipe includes practical storage and reheating instructions for 
-                      maximum convenience.
-                    </p>
-                  </div>
-                </div>
-              </section>
+              <p>
+                Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching. It has practical filters I wish every recipe site had. If there&apos;s something else you wish the site could do — send me a message on{' '}
+                <a 
+                  href="https://www.linkedin.com/in/rayanastanek/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-teal-600 hover:text-teal-700 underline"
+                >
+                  LinkedIn
+                </a>
+                . I&apos;ll see if I can build it. If there&apos;s a parenting or meal-prep pain point you think software could solve, I want to hear about it. I&apos;ll try to vibe-code it into existence. I&apos;m here to use AI for good.
+              </p>
 
-              <section>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                  Perfect for Toddlers 12+ Months
-                </h2>
-                <p className="text-gray-600 mb-3">
-                  All our recipes are specifically designed for toddlers 12 months and older, with:
-                </p>
-                <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  <li>Age-appropriate textures and flavors</li>
-                  <li>Reduced sodium and sugar content</li>
-                  <li>Finger foods and utensil-friendly options</li>
-                  <li>Nutritious ingredients that support growth</li>
-                </ul>
-              </section>
+              <p>
+                If you find a recipe helpful, please rate it or use my affiliate links when you shop. That small support helps keep this site alive.
+              </p>
 
-              <section>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                  Recipe Sources & Philosophy
-                </h2>
-                <p className="text-gray-600 mb-3">
-                  Our recipes are carefully adapted from traditional Korean and Asian dishes, 
-                  modified to be toddler-friendly while maintaining authentic flavors. We focus on:
-                </p>
-                <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  <li>Simple preparation methods</li>
-                  <li>Readily available ingredients</li>
-                  <li>Food processor-friendly techniques</li>
-                  <li>Practical portion sizes</li>
-                </ul>
-              </section>
+              <p>
+                Thanks for being here 💛
+              </p>
+            </div>
 
               <section className="bg-sand-100 p-4 rounded-lg">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-3">

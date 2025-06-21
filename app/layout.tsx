@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "Korean Baby Meals - Toddler Recipes by Ingredient",
     template: "%s | Korean Baby Meals"
   },
-  description: "Find Korean and Asian toddler recipes (12+ months) by searching ingredients in your pantry. Practical filters for eating method, messiness level, and batch cooking.",
+  description: "Quick, nutritious meal ideas for babies and toddlers — search ingredients in your pantry, and find batch-friendly recipes and freezer-ready options for busy parents. Vibe-coded by a working mom.",
   keywords: [
     "korean baby food",
     "toddler recipes",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     url: "https://koreanbabymeals.com",
     siteName: "Korean Baby Meals",
     title: "Korean Baby Meals - Toddler Recipes by Ingredient",
-    description: "Find Korean and Asian toddler recipes (12+ months) by searching ingredients in your pantry. Practical filters for eating method, messiness level, and batch cooking.",
+    description: "Quick, nutritious meal ideas for babies and toddlers — search ingredients in your pantry, and find batch-friendly recipes and freezer-ready options for busy parents. Vibe-coded by a working mom.",
     images: [
       {
         url: "/og-logo.png",

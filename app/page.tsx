@@ -8,11 +8,11 @@ import { RecipeServerService } from '@/lib/recipes-server'
 // Generate metadata for home page
 export const metadata: Metadata = {
   title: 'Korean Baby Meals | Healthy Korean Recipes for Babies & Toddlers',
-  description: 'Discover nutritious Korean recipes perfect for babies and toddlers. Easy-to-follow recipes with baby-friendly ingredients, cooking tips, and storage instructions.',
+  description: 'Quick, nutritious meal ideas for babies and toddlers — search ingredients in your pantry, and find batch-friendly recipes and freezer-ready options for busy parents. Vibe-coded by a working mom.',
   keywords: 'Korean baby food, toddler recipes, baby-led weaning, Korean cuisine, healthy baby meals, Korean cooking for kids',
   openGraph: {
     title: 'Korean Baby Meals | Healthy Korean Recipes for Babies & Toddlers',
-    description: 'Discover nutritious Korean recipes perfect for babies and toddlers. Easy-to-follow recipes with baby-friendly ingredients, cooking tips, and storage instructions.',
+    description: 'Quick, nutritious meal ideas for babies and toddlers — search ingredients in your pantry, and find batch-friendly recipes and freezer-ready options for busy parents. Vibe-coded by a working mom.',
     type: 'website',
     url: 'https://koreanbabymeals.com',
     siteName: 'Korean Baby Meals',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Korean Baby Meals | Healthy Korean Recipes for Babies & Toddlers',
-    description: 'Discover nutritious Korean recipes perfect for babies and toddlers. Easy-to-follow recipes with baby-friendly ingredients, cooking tips, and storage instructions.',
+    description: 'Quick, nutritious meal ideas for babies and toddlers — search ingredients in your pantry, and find batch-friendly recipes and freezer-ready options for busy parents. Vibe-coded by a working mom.',
     images: ['/og-logo.png'],
   },
   alternates: {
