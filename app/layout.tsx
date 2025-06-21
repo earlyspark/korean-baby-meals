@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       {
         url: "/og-logo.png",
         width: 1200,
-        height: 1200,
+        height: 630,
         alt: "Korean Baby Meals - Toddler Recipe Search"
       }
     ]
