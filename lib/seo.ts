@@ -151,13 +151,13 @@ export class SEOService {
       'og:title': `${recipe.title} | Korean Baby Meals`,
       'og:description': this.generateMetaDescription(recipe),
       'og:type': 'article',
-      'og:image': recipe.image_url || '/default-recipe-image.jpg',
+      'og:image': recipe.image_url || '/og-logo.png',
       'og:image:alt': recipe.title,
       'og:site_name': 'Korean Baby Meals',
       'twitter:card': 'summary_large_image',
       'twitter:title': `${recipe.title} | Korean Baby Meals`,
       'twitter:description': this.generateMetaDescription(recipe),
-      'twitter:image': recipe.image_url || '/default-recipe-image.jpg'
+      'twitter:image': recipe.image_url || '/og-logo.png'
     }
   }
 

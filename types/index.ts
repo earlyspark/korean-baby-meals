@@ -155,7 +155,7 @@ export interface FilterIcons {
 export const FILTER_ICONS: FilterIcons = {
   eating_method: {
     finger_foods: '🤏',
-    fork_friendly: '🍴',
+    fork_friendly: '🔱',
     spoon_friendly: '🥄',
     combination: '🍴'
   },

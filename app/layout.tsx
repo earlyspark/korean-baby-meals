@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     description: "Find Korean and Asian toddler recipes (12+ months) by searching ingredients in your pantry. Practical filters for eating method, messiness level, and batch cooking.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-logo.png",
         width: 1200,
-        height: 630,
+        height: 1200,
         alt: "Korean Baby Meals - Toddler Recipe Search"
       }
     ]
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Korean Baby Meals - Toddler Recipes by Ingredient",
     description: "Find Korean and Asian toddler recipes (12+ months) by searching ingredients in your pantry.",
-    images: ["/og-image.jpg"]
+    images: ["/og-logo.png"]
   },
   robots: {
     index: true,
