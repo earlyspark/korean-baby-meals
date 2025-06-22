@@ -19,25 +19,29 @@ const hasFreezerInstructions = (recipe: Recipe) => {
 
 const renderEatingMethodIcons = (recipe: Recipe, size: 'sm' | 'md' = 'md') => {
   const icons = []
-  const iconClass = size === 'sm' ? 'h-4 w-4' : 'h-5 w-5'
+  const textSize = size === 'sm' ? 'text-sm' : 'text-lg'
   
   if (recipe.is_finger_food) {
     icons.push(
-      <Hand 
+      <span 
         key="finger"
-        className={`${iconClass} text-gray-600`}
+        className={`${textSize} cursor-default`}
         title="Finger food"
-      />
+      >
+        ✋
+      </span>
     )
   }
   
   if (recipe.is_utensil_food) {
     icons.push(
-      <Utensils 
+      <span 
         key="utensils"
-        className={`${iconClass} text-gray-600`}
+        className={`${textSize} cursor-default`}
         title="Utensils needed"
-      />
+      >
+        🍴
+      </span>
     )
   }
   
@@ -171,14 +175,14 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
                   {renderEatingMethodIcons(recipe, 'sm')}
                 </div>
                 <span 
-                  className="text-sm" 
+                  className="text-sm cursor-default" 
                   title={`Messiness level: ${recipe.messiness_level}`}
                 >
                   {FILTER_ICONS.messiness_level[recipe.messiness_level]}
                 </span>
                 {hasFreezerInstructions(recipe) && (
                   <span 
-                    className="text-sm" 
+                    className="text-sm cursor-default" 
                     title="Freezer-friendly"
                   >
                     {FILTER_ICONS.special.freezer_friendly}
@@ -186,7 +190,7 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
                 )}
                 {Boolean(recipe.is_food_processor_friendly) && (
                   <span 
-                    className="text-sm" 
+                    className="text-sm cursor-default" 
                     title="Food processor-friendly"
                   >
                     {FILTER_ICONS.special.food_processor_friendly}
@@ -273,14 +277,14 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
             {renderEatingMethodIcons(recipe, 'md')}
           </div>
           <span 
-            className="text-lg" 
+            className="text-lg cursor-default" 
             title={`Messiness level: ${recipe.messiness_level}`}
           >
             {FILTER_ICONS.messiness_level[recipe.messiness_level]}
           </span>
           {hasFreezerInstructions(recipe) && (
             <span 
-              className="text-lg" 
+              className="text-lg cursor-default" 
               title="Freezer-friendly"
             >
               {FILTER_ICONS.special.freezer_friendly}
@@ -288,7 +292,7 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
           )}
           {Boolean(recipe.is_food_processor_friendly) && (
             <span 
-              className="text-lg" 
+              className="text-lg cursor-default" 
               title="Food processor-friendly"
             >
               {FILTER_ICONS.special.food_processor_friendly}

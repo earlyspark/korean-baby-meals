@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { Recipe, FILTER_ICONS } from '@/types'
-import { Star, Clock, Users, ChefHat } from 'lucide-react'
+import { Star, Clock, Users, ChefHat, Hand, Utensils } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/Header'
@@ -48,6 +48,45 @@ const renderStars = (rating: number) => {
       }`}
     />
   ))
+}
+
+const renderEatingMethodIcons = (recipe: Recipe) => {
+  const icons = []
+  
+  if (recipe.is_finger_food) {
+    icons.push(
+      <span 
+        key="finger"
+        className="text-2xl cursor-default"
+        title="Finger food"
+      >
+        ✋
+      </span>
+    )
+  }
+  
+  if (recipe.is_utensil_food) {
+    icons.push(
+      <span 
+        key="utensils"
+        className="text-2xl cursor-default"
+        title="Utensils needed"
+      >
+        🍴
+      </span>
+    )
+  }
+  
+  // Fallback to old system if new fields are not set
+  if (icons.length === 0 && recipe.eating_method) {
+    icons.push(
+      <span key="fallback" className="text-2xl" title={`Eating method: ${recipe.eating_method.replace('_', ' ')}`}>
+        {FILTER_ICONS.eating_method[recipe.eating_method]}
+      </span>
+    )
+  }
+  
+  return icons
 }
 
 // Generate static params for ISR
@@ -162,6 +201,7 @@ export default async function RecipePage({ params }: { params: { slug: string } 
                     src={recipe.image_url}
                     alt={recipe.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                     className="object-cover"
                     priority
                   />
@@ -216,21 +256,16 @@ export default async function RecipePage({ params }: { params: { slug: string } 
 
                 {/* Filter Icons */}
                 <div className="flex items-center gap-2 mb-4">
+                  {renderEatingMethodIcons(recipe)}
                   <span 
-                    className="text-2xl" 
-                    title={`Eating method: ${recipe.eating_method.replace('_', ' ')}`}
-                  >
-                    {FILTER_ICONS.eating_method[recipe.eating_method]}
-                  </span>
-                  <span 
-                    className="text-2xl" 
+                    className="text-2xl cursor-default" 
                     title={`Messiness level: ${recipe.messiness_level}`}
                   >
                     {FILTER_ICONS.messiness_level[recipe.messiness_level]}
                   </span>
                   {hasFreezerInstructions(recipe) && (
                     <span 
-                      className="text-2xl" 
+                      className="text-2xl cursor-default" 
                       title="Freezer-friendly"
                     >
                       {FILTER_ICONS.special.freezer_friendly}
@@ -238,7 +273,7 @@ export default async function RecipePage({ params }: { params: { slug: string } 
                   )}
                   {recipe.is_food_processor_friendly && (
                     <span 
-                      className="text-2xl" 
+                      className="text-2xl cursor-default" 
                       title="Food processor-friendly"
                     >
                       {FILTER_ICONS.special.food_processor_friendly}

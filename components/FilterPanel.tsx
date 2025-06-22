@@ -39,7 +39,7 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
               onChange={(e) => updateFilter('is_finger_food', e.target.checked ? true : undefined)}
               className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
-            <Hand className="ml-2 w-5 h-5 text-gray-600" />
+            <span className="ml-2 text-lg">✋</span>
             <span className="ml-2 text-sm text-gray-700">Finger Foods</span>
           </label>
 
@@ -52,7 +52,7 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
               onChange={(e) => updateFilter('is_utensil_food', e.target.checked ? true : undefined)}
               className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
-            <Utensils className="ml-2 w-5 h-5 text-gray-600" />
+            <span className="ml-2 text-lg">🍴</span>
             <span className="ml-2 text-sm text-gray-700">Utensils</span>
           </label>
         </div>
