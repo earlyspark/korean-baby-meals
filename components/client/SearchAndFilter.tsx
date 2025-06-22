@@ -72,27 +72,6 @@ export default function SearchAndFilter({
     }
   }, [router, isSearchPage])
 
-  const loadAllRecipes = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/recipes?limit=50')
-      if (!response.ok) throw new Error('Failed to load recipes')
-      
-      const data = await response.json()
-      setAllRecipes(data.recipes)
-      setSearchResults({
-        recipes: data.recipes,
-        almost_matches: [],
-        total_count: data.total_count,
-        has_more: data.recipes.length < data.total_count
-      })
-      setOffset(data.recipes.length)
-    } catch (error) {
-      console.error('Error loading recipes:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const loadMoreRecipes = async () => {
     if (isLoading || !searchResults.has_more) return
@@ -241,8 +220,6 @@ export default function SearchAndFilter({
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
           onLoadMore={hasSearched ? undefined : loadMoreRecipes}
-          showLoadAll={!hasSearched && allRecipes.length < 50}
-          onLoadAll={loadAllRecipes}
         />
       </div>
     </div>

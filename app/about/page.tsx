@@ -1,4 +1,18 @@
 import Link from 'next/link'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About | Korean Baby Meals',
+  description: "Hi, I'm earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching.",
+  openGraph: {
+    title: 'About | Korean Baby Meals',
+    description: "Hi, I'm earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching.",
+  },
+  twitter: {
+    title: 'About | Korean Baby Meals',
+    description: "Hi, I'm earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching.",
+  }
+}
 
 export default function AboutPage() {
   return (

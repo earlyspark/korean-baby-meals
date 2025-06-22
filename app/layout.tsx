@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -81,6 +82,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${nunitoSans.variable} antialiased`}
       >
+        <GoogleAnalytics />
         {children}
       </body>
     </html>

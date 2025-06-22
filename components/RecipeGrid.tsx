@@ -12,8 +12,6 @@ interface RecipeGridProps {
   onToggleFavorite?: (recipeId: number) => void
   onRate?: (recipeId: number, rating: number) => void
   onLoadMore?: () => void
-  showLoadAll?: boolean
-  onLoadAll?: () => void
 }
 
 export default function RecipeGrid({
@@ -23,9 +21,7 @@ export default function RecipeGrid({
   onViewModeChange,
   onToggleFavorite,
   onRate,
-  onLoadMore,
-  showLoadAll = false,
-  onLoadAll
+  onLoadMore
 }: RecipeGridProps) {
   const { recipes = [], almost_matches = [], has_more = false, total_count = 0 } = searchResults || {}
   
@@ -140,7 +136,7 @@ export default function RecipeGrid({
       )}
 
       {/* Load More / Load All */}
-      {((has_more && onLoadMore) || (showLoadAll && onLoadAll)) && (
+      {(has_more && onLoadMore) && (
         <div className="flex justify-center gap-4 pt-4">
           {has_more && onLoadMore && (
             <button
@@ -149,15 +145,6 @@ export default function RecipeGrid({
               className="px-6 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? 'Loading...' : 'Load More'}
-            </button>
-          )}
-          {showLoadAll && onLoadAll && (
-            <button
-              onClick={onLoadAll}
-              disabled={isLoading}
-              className="px-6 py-2 bg-sand-300 text-gray-700 rounded-lg hover:bg-sand-400 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? 'Loading...' : 'Load All Recipes'}
             </button>
           )}
         </div>

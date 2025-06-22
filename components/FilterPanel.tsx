@@ -1,6 +1,8 @@
 'use client'
 
 import { SearchFilters, EatingMethod, MessinessLevel, FILTER_ICONS } from '@/types'
+import { HelpCircle } from 'lucide-react'
+import Tooltip from './Tooltip'
 
 interface FilterPanelProps {
   filters: SearchFilters
@@ -48,7 +50,12 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
       </div>
 
       <div>
-        <h3 className="font-medium text-gray-900 mb-2">Messiness Level</h3>
+        <h3 className="font-medium text-gray-900 mb-2 flex items-center gap-1">
+          Messiness Level
+          <Tooltip content="Mess factor when eating">
+            <HelpCircle className="w-4 h-4 text-gray-400" />
+          </Tooltip>
+        </h3>
         <div className="space-y-2">
           {Object.entries(FILTER_ICONS.messiness_level).map(([level, icon]) => (
             <label key={level} className="flex items-center cursor-pointer">
