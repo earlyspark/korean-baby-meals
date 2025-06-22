@@ -1,7 +1,7 @@
 'use client'
 
 import { SearchFilters, EatingMethod, MessinessLevel, FILTER_ICONS } from '@/types'
-import { HelpCircle } from 'lucide-react'
+import { HelpCircle, Hand, Utensils } from 'lucide-react'
 import Tooltip from './Tooltip'
 
 interface FilterPanelProps {
@@ -30,22 +30,31 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
       <div>
         <h3 className="font-medium text-gray-900 mb-2">Eating Method</h3>
         <div className="space-y-2">
-          {Object.entries(FILTER_ICONS.eating_method)
-            .filter(([method]) => method !== 'combination')
-            .map(([method, icon]) => (
-            <label key={method} className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                checked={filters.eating_method?.includes(method as EatingMethod) || false}
-                onChange={() => toggleArrayFilter('eating_method', method)}
-                className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
-              />
-              <span className="ml-2 text-lg">{icon}</span>
-              <span className="ml-2 text-sm text-gray-700 capitalize">
-                {method.replace('_', ' ')}
-              </span>
-            </label>
-          ))}
+          <label htmlFor="filter-finger-food" className="flex items-center cursor-pointer">
+            <input
+              id="filter-finger-food"
+              name="finger_food"
+              type="checkbox"
+              checked={filters.is_finger_food || false}
+              onChange={(e) => updateFilter('is_finger_food', e.target.checked ? true : undefined)}
+              className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+            />
+            <Hand className="ml-2 w-5 h-5 text-gray-600" />
+            <span className="ml-2 text-sm text-gray-700">Finger Foods</span>
+          </label>
+
+          <label htmlFor="filter-utensil-food" className="flex items-center cursor-pointer">
+            <input
+              id="filter-utensil-food"
+              name="utensil_food"
+              type="checkbox"
+              checked={filters.is_utensil_food || false}
+              onChange={(e) => updateFilter('is_utensil_food', e.target.checked ? true : undefined)}
+              className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+            />
+            <Utensils className="ml-2 w-5 h-5 text-gray-600" />
+            <span className="ml-2 text-sm text-gray-700">Utensils</span>
+          </label>
         </div>
       </div>
 
@@ -58,8 +67,10 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
         </h3>
         <div className="space-y-2">
           {Object.entries(FILTER_ICONS.messiness_level).map(([level, icon]) => (
-            <label key={level} className="flex items-center cursor-pointer">
+            <label key={level} htmlFor={`filter-messiness-${level}`} className="flex items-center cursor-pointer">
               <input
+                id={`filter-messiness-${level}`}
+                name={`messiness_${level}`}
                 type="checkbox"
                 checked={filters.messiness_level?.includes(level as MessinessLevel) || false}
                 onChange={() => toggleArrayFilter('messiness_level', level)}
@@ -77,8 +88,10 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
       <div>
         <h3 className="font-medium text-gray-900 mb-2">Special Features</h3>
         <div className="space-y-2">
-          <label className="flex items-center cursor-pointer">
+          <label htmlFor="filter-freezer-friendly" className="flex items-center cursor-pointer">
             <input
+              id="filter-freezer-friendly"
+              name="freezer_friendly"
               type="checkbox"
               checked={filters.is_freezer_friendly || false}
               onChange={(e) => updateFilter('is_freezer_friendly', e.target.checked ? true : undefined)}
@@ -88,8 +101,10 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
             <span className="ml-2 text-sm text-gray-700">Freezer-Friendly</span>
           </label>
 
-          <label className="flex items-center cursor-pointer">
+          <label htmlFor="filter-food-processor-friendly" className="flex items-center cursor-pointer">
             <input
+              id="filter-food-processor-friendly"
+              name="food_processor_friendly"
               type="checkbox"
               checked={filters.is_food_processor_friendly || false}
               onChange={(e) => updateFilter('is_food_processor_friendly', e.target.checked ? true : undefined)}
@@ -100,8 +115,10 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
           </label>
 
           <div className="relative group">
-            <label className="flex items-center cursor-pointer">
+            <label htmlFor="filter-favorites-only" className="flex items-center cursor-pointer">
               <input
+                id="filter-favorites-only"
+                name="favorites_only"
                 type="checkbox"
                 checked={filters.favorites_only || false}
                 onChange={(e) => updateFilter('favorites_only', e.target.checked ? true : undefined)}

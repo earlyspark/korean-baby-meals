@@ -57,6 +57,8 @@ export class RecipeSearchService {
         r.servings,
         r.portions_toddler,
         r.eating_method,
+        r.is_finger_food,
+        r.is_utensil_food,
         r.messiness_level,
         r.is_freezer_friendly,
         r.is_food_processor_friendly,
@@ -115,6 +117,7 @@ export class RecipeSearchService {
 
     baseQuery += joins.join(' ')
 
+    // Legacy eating method support (deprecated)
     if (filters.eating_method && filters.eating_method.length > 0) {
       let eating_methods = [...filters.eating_method]
       
@@ -126,6 +129,19 @@ export class RecipeSearchService {
       const placeholders = eating_methods.map(() => '?').join(',')
       conditions.push(`r.eating_method IN (${placeholders})`)
       params_array.push(...eating_methods)
+    }
+    
+    // New boolean eating method filters
+    const eatingMethodConditions = []
+    if (filters.is_finger_food) {
+      eatingMethodConditions.push('r.is_finger_food = 1')
+    }
+    if (filters.is_utensil_food) {
+      eatingMethodConditions.push('r.is_utensil_food = 1')
+    }
+    
+    if (eatingMethodConditions.length > 0) {
+      conditions.push(`(${eatingMethodConditions.join(' OR ')})`)
     }
 
     if (filters.messiness_level && filters.messiness_level.length > 0) {

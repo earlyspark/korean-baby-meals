@@ -88,13 +88,14 @@ export default function RecipeGrid({
               ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
               : 'space-y-2 w-full'
           }`}>
-            {recipes.map((recipe) => (
+            {recipes.map((recipe, index) => (
               <RecipeCard
                 key={recipe.id}
                 recipe={recipe}
                 onToggleFavorite={onToggleFavorite}
                 onRate={onRate}
                 viewMode={viewMode}
+                priority={index < 3} // First 3 recipes get priority loading
               />
             ))}
           </div>
@@ -112,7 +113,7 @@ export default function RecipeGrid({
               ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
               : 'space-y-2 w-full'
           }>
-            {almost_matches.map((recipe) => (
+            {almost_matches.map((recipe, index) => (
               <RecipeCard
                 key={recipe.id}
                 recipe={recipe}
@@ -120,6 +121,7 @@ export default function RecipeGrid({
                 onRate={onRate}
                 viewMode={viewMode}
                 showAlmostMatch={true}
+                priority={recipes.length === 0 && index < 3} // Priority only if no perfect matches
               />
             ))}
           </div>

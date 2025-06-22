@@ -11,14 +11,15 @@ import { parseSearchParams, generateSearchTitle, generateSearchDescription } fro
 export const revalidate = 3600
 
 interface SearchPageProps {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams
   const urlParams = new URLSearchParams()
   
   // Convert searchParams to URLSearchParams
-  Object.entries(searchParams).forEach(([key, value]) => {
+  Object.entries(resolvedSearchParams).forEach(([key, value]) => {
     if (value) {
       const stringValue = Array.isArray(value) ? value.join(',') : value
       urlParams.set(key, stringValue)
@@ -69,10 +70,11 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
 }
 
 async function SearchResults({ searchParams }: SearchPageProps) {
+  const resolvedSearchParams = await searchParams
   const urlParams = new URLSearchParams()
   
   // Convert searchParams to URLSearchParams
-  Object.entries(searchParams).forEach(([key, value]) => {
+  Object.entries(resolvedSearchParams).forEach(([key, value]) => {
     if (value) {
       const stringValue = Array.isArray(value) ? value.join(',') : value
       urlParams.set(key, stringValue)

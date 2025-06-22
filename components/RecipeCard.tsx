@@ -1,7 +1,7 @@
 'use client'
 
 import { Recipe, FILTER_ICONS } from '@/types'
-import { Star, Clock, Users } from 'lucide-react'
+import { Star, Clock, Users, Hand, Utensils } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import FavoriteButton from '@/components/client/FavoriteButton'
@@ -17,15 +17,47 @@ const hasFreezerInstructions = (recipe: Recipe) => {
   return freezeKeywords.some(keyword => instructions.includes(keyword))
 }
 
+const renderEatingMethodIcons = (recipe: Recipe, size: 'sm' | 'md' = 'md') => {
+  const icons = []
+  const iconClass = size === 'sm' ? 'h-4 w-4' : 'h-5 w-5'
+  
+  if (recipe.is_finger_food) {
+    icons.push(
+      <Hand 
+        key="finger"
+        className={`${iconClass} text-gray-600`}
+        title="Finger food"
+      />
+    )
+  }
+  
+  if (recipe.is_utensil_food) {
+    icons.push(
+      <Utensils 
+        key="utensils"
+        className={`${iconClass} text-gray-600`}
+        title="Utensils needed"
+      />
+    )
+  }
+  
+  return icons.length > 0 ? icons : [
+    <span key="fallback" className="text-sm text-gray-400" title="Eating method not specified">
+      {recipe.eating_method ? FILTER_ICONS.eating_method[recipe.eating_method] : '?'}
+    </span>
+  ]
+}
+
 interface RecipeCardProps {
   recipe: Recipe
   onToggleFavorite?: (recipeId: number) => void
   onRate?: (recipeId: number, rating: number) => void
   viewMode?: 'grid' | 'list'
   showAlmostMatch?: boolean
+  priority?: boolean // For LCP optimization
 }
 
-export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode = 'grid', showAlmostMatch = false }: RecipeCardProps) {
+export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode = 'grid', showAlmostMatch = false, priority = false }: RecipeCardProps) {
   const renderStars = (rating: number, interactive: boolean = false) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -54,6 +86,8 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
                     src={recipe.image_url}
                     alt={recipe.title}
                     fill
+                    sizes="64px"
+                    priority={priority}
                     className="object-cover"
                   />
                 ) : (
@@ -133,12 +167,9 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
               </div>
 
               <div className="flex items-center gap-3">
-                <span 
-                  className="text-sm" 
-                  title={`Eating method: ${recipe.eating_method.replace('_', ' ')}`}
-                >
-                  {FILTER_ICONS.eating_method[recipe.eating_method]}
-                </span>
+                <div className="flex items-center gap-1">
+                  {renderEatingMethodIcons(recipe, 'sm')}
+                </div>
                 <span 
                   className="text-sm" 
                   title={`Messiness level: ${recipe.messiness_level}`}
@@ -180,6 +211,8 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
                 src={recipe.image_url}
                 alt={recipe.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={priority}
                 className="object-cover"
               />
             ) : (
@@ -236,12 +269,9 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
         </div>
 
         <div className="flex items-center gap-1 mb-3">
-          <span 
-            className="text-lg" 
-            title={`Eating method: ${recipe.eating_method.replace('_', ' ')}`}
-          >
-            {FILTER_ICONS.eating_method[recipe.eating_method]}
-          </span>
+          <div className="flex items-center gap-1">
+            {renderEatingMethodIcons(recipe, 'md')}
+          </div>
           <span 
             className="text-lg" 
             title={`Messiness level: ${recipe.messiness_level}`}

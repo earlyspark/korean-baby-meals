@@ -89,12 +89,15 @@ export default function IngredientSearch({ selectedIngredients, onIngredientsCha
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <input
             ref={inputRef}
+            id="ingredient-search"
+            name="ingredient_search"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Search (e.g., chicken, rice)"
             className="w-full pl-10 pr-4 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-900 text-xs"
+            autoComplete="off"
           />
         </div>
 

@@ -21,7 +21,9 @@ export interface Recipe {
   total_time?: number
   servings?: number
   portions_toddler?: number
-  eating_method: EatingMethod
+  eating_method?: EatingMethod // Deprecated - use is_finger_food and is_utensil_food
+  is_finger_food: boolean
+  is_utensil_food: boolean
   messiness_level: MessinessLevel
   is_freezer_friendly: boolean
   is_food_processor_friendly: boolean
@@ -87,7 +89,9 @@ export type EatingMethod = 'finger_foods' | 'fork_friendly' | 'spoon_friendly' |
 export type MessinessLevel = 'clean' | 'moderate' | 'messy'
 
 export interface SearchFilters {
-  eating_method?: EatingMethod[]
+  eating_method?: EatingMethod[] // Deprecated
+  is_finger_food?: boolean
+  is_utensil_food?: boolean
   messiness_level?: MessinessLevel[]
   is_freezer_friendly?: boolean
   is_food_processor_friendly?: boolean

@@ -145,7 +145,10 @@ export default function SearchAndFilter({
           if (Array.isArray(value)) {
             params.append(key, value.join(','))
           } else {
-            params.append(key, value.toString())
+            // Map new boolean field names to API parameter names
+            const paramName = key === 'is_finger_food' ? 'finger_food' :
+                             key === 'is_utensil_food' ? 'utensil_food' : key
+            params.append(paramName, value.toString())
           }
         }
       })

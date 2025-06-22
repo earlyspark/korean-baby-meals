@@ -12,9 +12,19 @@ export async function GET(request: NextRequest) {
     
     const filters: SearchFilters = {}
     
+    // Legacy eating method support (deprecated)
     const eatingMethodParam = searchParams.get('eating_method')
     if (eatingMethodParam) {
       filters.eating_method = eatingMethodParam.split(',') as any
+    }
+    
+    // New boolean eating method filters
+    if (searchParams.get('finger_food') === 'true') {
+      filters.is_finger_food = true
+    }
+    
+    if (searchParams.get('utensil_food') === 'true') {
+      filters.is_utensil_food = true
     }
     
     const messinessParam = searchParams.get('messiness_level')
