@@ -22,7 +22,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-nunito-sans);
-  --font-mono: var(--font-inter);
+  --font-mono: ui-monospace, "Menlo", "Monaco", "Cascadia Code", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --color-sand-100: var(--sand-100);
   --color-sand-200: var(--sand-200);
   --color-sand-300: var(--sand-300);

@@ -1,10 +1,11 @@
 'use client'
 
 import { Recipe, FILTER_ICONS } from '@/types'
-import { Star, Clock, Users, Hand, Utensils } from 'lucide-react'
+import { Star, Clock, Users } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import FavoriteButton from '@/components/client/FavoriteButton'
+import Tooltip from '@/components/Tooltip'
 
 const hasFreezerInstructions = (recipe: Recipe) => {
   if (!recipe.storage_instructions) {
@@ -77,10 +78,11 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
   }
 
   if (viewMode === 'list') {
-    // Compact list view
+    // Compact list view - responsive layout
     return (
-      <div className="bg-sand-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow w-full min-w-[800px]">
-        <div className="flex items-center gap-4 px-4 py-3">
+      <div className="bg-sand-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow w-full">
+        {/* Desktop and tablet layout */}
+        <div className="hidden sm:flex items-center gap-4 px-4 py-3">
           {/* Square thumbnail */}
           <div className="flex-shrink-0 relative">
             <Link href={`/recipes/${recipe.slug}`}>
@@ -112,8 +114,8 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
           </div>
 
           {/* Content */}
-          <div className="flex-1 min-w-0 w-full">
-            <div className="flex items-center justify-between w-full">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between">
               <Link href={`/recipes/${recipe.slug}`} className="flex-1 mr-4">
                 <h3 className="font-semibold text-gray-900 hover:text-teal-600 text-base leading-tight">
                   {recipe.title}
@@ -121,9 +123,9 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
               </Link>
               
               {/* Almost Match Badge and Rating */}
-              <div className="flex items-center gap-2 ml-2">
+              <div className="flex items-center gap-2">
                 {showAlmostMatch && (
-                  <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">
+                  <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full whitespace-nowrap">
                     Almost match
                   </div>
                 )}
@@ -154,8 +156,8 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
               </div>
             )}
 
-            <div className="flex items-center justify-between mt-2 w-full">
-              <div className="flex items-center gap-6 text-sm text-gray-500">
+            <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center gap-4 text-sm text-gray-500">
                 {recipe.total_time && (
                   <div className="flex items-center gap-1">
                     <Clock className="h-3 w-3" />
@@ -170,7 +172,7 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
                 )}
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1">
                   {renderEatingMethodIcons(recipe, 'sm')}
                 </div>
@@ -196,6 +198,128 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
                     {FILTER_ICONS.special.food_processor_friendly}
                   </span>
                 )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile layout - stacked vertically */}
+        <div className="sm:hidden">
+          <div className="flex items-start gap-3 px-3 py-3">
+            {/* Thumbnail */}
+            <div className="flex-shrink-0 relative">
+              <Link href={`/recipes/${recipe.slug}`}>
+                <div className="relative w-20 h-20 bg-sand-300 rounded-md overflow-hidden">
+                  {recipe.image_url ? (
+                    <Image
+                      src={recipe.image_url}
+                      alt={recipe.title}
+                      fill
+                      sizes="80px"
+                      priority={priority}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-gray-400">
+                      <span className="text-2xl">🍽️</span>
+                    </div>
+                  )}
+                </div>
+              </Link>
+              {/* Heart overlay */}
+              <div className="absolute top-1 right-1">
+                <FavoriteButton 
+                  recipeId={recipe.id}
+                  size="sm"
+                  className="bg-opacity-90 hover:bg-opacity-100 shadow-sm"
+                />
+              </div>
+            </div>
+
+            {/* Content - takes remaining space */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2">
+                <Link href={`/recipes/${recipe.slug}`} className="flex-1">
+                  <h3 className="font-semibold text-gray-900 hover:text-teal-600 text-sm leading-tight">
+                    {recipe.title}
+                  </h3>
+                </Link>
+                
+                {showAlmostMatch && (
+                  <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
+                    Almost match
+                  </div>
+                )}
+              </div>
+
+              {/* Ingredients */}
+              {recipe.ingredients && recipe.ingredients.length > 0 && (
+                <div className="mt-1">
+                  <p className="text-xs text-gray-600 line-clamp-1">
+                    {recipe.ingredients.map(ingredient => 
+                      ingredient.ingredient?.name || 'Unknown'
+                    ).join(', ')}
+                  </p>
+                </div>
+              )}
+
+              {/* Recipe meta info stacked */}
+              <div className="mt-2 space-y-1">
+                <div className="flex items-center gap-3 text-xs text-gray-500">
+                  {recipe.total_time && (
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      <span>{recipe.total_time}min</span>
+                    </div>
+                  )}
+                  {recipe.portions_toddler && (
+                    <div className="flex items-center gap-1">
+                      <Users className="h-3 w-3" />
+                      <span>{recipe.portions_toddler} portions</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-xs text-gray-500">
+                    {recipe.average_rating ? (
+                      <>
+                        <div className="flex">
+                          {renderStars(Math.round(recipe.average_rating))}
+                        </div>
+                        <span>({recipe.total_ratings})</span>
+                      </>
+                    ) : (
+                      <span>No ratings</span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-1">
+                    {renderEatingMethodIcons(recipe, 'sm')}
+                    <span 
+                      className="text-sm cursor-default" 
+                      title={`Messiness level: ${recipe.messiness_level}`}
+                    >
+                      {FILTER_ICONS.messiness_level[recipe.messiness_level]}
+                    </span>
+                    {hasFreezerInstructions(recipe) && (
+                      <span 
+                        className="text-sm cursor-default" 
+                        title="Freezer-friendly"
+                      >
+                        {FILTER_ICONS.special.freezer_friendly}
+                      </span>
+                    )}
+                    {Boolean(recipe.is_food_processor_friendly) && (
+                      <span 
+                        className="text-sm cursor-default" 
+                        title="Food processor-friendly"
+                      >
+                        {FILTER_ICONS.special.food_processor_friendly}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -318,15 +442,17 @@ export default function RecipeCard({ recipe, onToggleFavorite, onRate, viewMode 
 
           <div className="flex items-center gap-1">
             <span className="text-xs text-gray-500">Rate:</span>
-            <a
-              href="/login"
-              className="flex text-gray-400 hover:text-teal-600 transition-colors"
-              title="Login to rate recipes"
-            >
-              {Array.from({ length: 5 }, (_, i) => (
-                <Star key={i} className="h-3 w-3" />
-              ))}
-            </a>
+            <Tooltip content="Login to rate recipes" position="left">
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="flex text-gray-400 hover:text-teal-600 transition-colors"
+                aria-label="Rate recipe"
+              >
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star key={i} className="h-3 w-3" />
+                ))}
+              </button>
+            </Tooltip>
           </div>
         </div>
 

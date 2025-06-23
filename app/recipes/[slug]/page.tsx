@@ -282,26 +282,55 @@ export default async function RecipePage({ params }: { params: { slug: string } 
                 </div>
 
                 {/* Rating */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b">
-                  <div className="flex items-center gap-2">
-                    <div className="flex">
-                      {renderStars(Math.round(recipe.average_rating || 0))}
+                <div className="mb-4 pb-3 border-b">
+                  {/* Desktop: side-by-side layout */}
+                  <div className="hidden sm:flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="flex">
+                        {renderStars(Math.round(recipe.average_rating || 0))}
+                      </div>
+                      <span className="text-sm text-gray-600">
+                        {recipe.average_rating 
+                          ? `${recipe.average_rating.toFixed(1)} (${recipe.total_ratings} reviews)`
+                          : 'No ratings yet'
+                        }
+                      </span>
                     </div>
-                    <span className="text-sm text-gray-600">
-                      {recipe.average_rating 
-                        ? `${recipe.average_rating.toFixed(1)} (${recipe.total_ratings} reviews)`
-                        : 'No ratings yet'
-                      }
-                    </span>
+                    
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-gray-600">Rate this recipe:</span>
+                      <RatingButton 
+                        recipeId={recipe.id}
+                        currentRating={recipe.user_rating || 0}
+                        showTooltip={true}
+                      />
+                    </div>
                   </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-600">Rate this recipe:</span>
-                    <RatingButton 
-                      recipeId={recipe.id}
-                      currentRating={recipe.user_rating || 0}
-                      showTooltip={true}
-                    />
+
+                  {/* Mobile: side-by-side with wrapping */}
+                  <div className="sm:hidden flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex justify-start mb-1">
+                        {renderStars(Math.round(recipe.average_rating || 0))}
+                      </div>
+                      <span className="text-sm text-gray-600">
+                        {recipe.average_rating 
+                          ? `${recipe.average_rating.toFixed(1)} (${recipe.total_ratings} reviews)`
+                          : 'No ratings yet'
+                        }
+                      </span>
+                    </div>
+                    
+                    <div className="flex-1 text-right">
+                      <div className="text-sm text-gray-600 mb-1">Rate this recipe:</div>
+                      <div className="flex justify-end">
+                        <RatingButton 
+                          recipeId={recipe.id}
+                          currentRating={recipe.user_rating || 0}
+                          showTooltip={true}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
