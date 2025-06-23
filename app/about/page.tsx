@@ -5,12 +5,24 @@ export const metadata: Metadata = {
   title: 'About | Korean Baby Meals',
   description: "Hi, I'm earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching.",
   openGraph: {
+    type: "website",
+    url: "https://koreanbabymeals.com/about",
     title: 'About | Korean Baby Meals',
     description: "Hi, I'm earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching.",
+    images: [
+      {
+        url: "/og-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Korean Baby Meals - About the Creator"
+      }
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: 'About | Korean Baby Meals',
     description: "Hi, I'm earlyspark — a new mom trying to figure out what to feed my baby now that she can eat almost anything. Korean Baby Meals is for busy caregivers who want to feed their kids diverse, healthy food without spending hours researching.",
+    images: ["/og-logo.png"],
   }
 }
 

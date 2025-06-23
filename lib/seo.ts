@@ -147,17 +147,22 @@ export class SEOService {
    * Generate Open Graph tags for social sharing
    */
   static generateOpenGraphTags(recipe: Recipe) {
+    const baseUrl = 'https://koreanbabymeals.com'
+    const imageUrl = recipe.image_url 
+      ? (recipe.image_url.startsWith('http') ? recipe.image_url : `${baseUrl}${recipe.image_url}`)
+      : `${baseUrl}/og-logo.png`
+    
     return {
       'og:title': `${recipe.title} | Korean Baby Meals`,
       'og:description': this.generateMetaDescription(recipe),
       'og:type': 'article',
-      'og:image': recipe.image_url || '/og-logo.png',
+      'og:image': imageUrl,
       'og:image:alt': recipe.title,
       'og:site_name': 'Korean Baby Meals',
       'twitter:card': 'summary_large_image',
       'twitter:title': `${recipe.title} | Korean Baby Meals`,
       'twitter:description': this.generateMetaDescription(recipe),
-      'twitter:image': recipe.image_url || '/og-logo.png'
+      'twitter:image': imageUrl
     }
   }
 
