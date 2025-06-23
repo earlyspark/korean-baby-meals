@@ -1,9 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function Header() {
+  const pathname = usePathname()
+  
+  const getLinkClasses = (href: string) => {
+    const isActive = pathname === href
+    return isActive 
+      ? "font-semibold text-teal-600" 
+      : "text-gray-700 hover:text-gray-900"
+  }
+
   return (
     <header className="bg-sand-500 shadow-sm border-b">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,10 +22,10 @@ export default function Header() {
             <img src="/kbm_logo.svg" alt="" className="h-20 w-auto" aria-hidden="true" />
           </Link>
           <nav className="flex space-x-4">
-            <Link href="/about" className="text-gray-700 hover:text-gray-900">
+            <Link href="/about" className={getLinkClasses('/about')}>
               About
             </Link>
-            <Link href="/login" className="text-gray-700 hover:text-gray-900">
+            <Link href="/login" className={getLinkClasses('/login')}>
               Login
             </Link>
           </nav>

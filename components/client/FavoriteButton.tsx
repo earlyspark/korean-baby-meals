@@ -1,6 +1,7 @@
 'use client'
 
 import { Heart } from 'lucide-react'
+import Tooltip from '../Tooltip'
 
 interface FavoriteButtonProps {
   recipeId: number
@@ -10,10 +11,8 @@ interface FavoriteButtonProps {
 }
 
 export default function FavoriteButton({ 
-  recipeId, 
   className = '', 
-  size = 'md',
-  showTooltip = false 
+  size = 'md'
 }: FavoriteButtonProps) {
   const sizeClasses = {
     sm: 'h-3 w-3',
@@ -27,30 +26,23 @@ export default function FavoriteButton({
     lg: 'p-2'
   }
 
-  if (showTooltip) {
-    return (
-      <div className="relative group">
-        <a
-          href="/login"
-          className={`${paddingClasses[size]} bg-sand-200 rounded-full shadow-lg hover:bg-sand-100 block ${className}`}
-          title="Login to favorite recipes"
-        >
-          <Heart className={`${sizeClasses[size]} text-gray-400 hover:text-teal-600`} />
-        </a>
-        <div className="absolute top-full right-0 mt-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">
-          Login to favorite
-        </div>
-      </div>
-    )
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
   }
 
-  return (
-    <a
-      href="/login"
+  const button = (
+    <button
+      onClick={handleClick}
       className={`${paddingClasses[size]} bg-sand-200 rounded-full shadow-lg hover:bg-sand-100 block ${className}`}
-      title="Login to favorite recipes"
+      aria-label="Add to favorites"
     >
       <Heart className={`${sizeClasses[size]} text-gray-400 hover:text-teal-600`} />
-    </a>
+    </button>
+  )
+
+  return (
+    <Tooltip content="Login to save favorites" position="bottom">
+      {button}
+    </Tooltip>
   )
 }

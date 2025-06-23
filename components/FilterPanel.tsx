@@ -1,7 +1,7 @@
 'use client'
 
-import { SearchFilters, EatingMethod, MessinessLevel, FILTER_ICONS } from '@/types'
-import { HelpCircle, Hand, Utensils } from 'lucide-react'
+import { SearchFilters, MessinessLevel, FILTER_ICONS } from '@/types'
+import { HelpCircle } from 'lucide-react'
 import Tooltip from './Tooltip'
 
 interface FilterPanelProps {
@@ -114,24 +114,21 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
             <span className="ml-2 text-sm text-gray-700">Food Processor-Friendly</span>
           </label>
 
-          <div className="relative group">
+          <Tooltip content="Login to use favorites">
             <label htmlFor="filter-favorites-only" className="flex items-center cursor-pointer">
               <input
                 id="filter-favorites-only"
                 name="favorites_only"
                 type="checkbox"
                 checked={filters.favorites_only || false}
-                onChange={(e) => updateFilter('favorites_only', e.target.checked ? true : undefined)}
+                onChange={(e) => e.preventDefault()}
                 className="rounded border-gray-300 text-gray-400 focus:ring-gray-400 cursor-not-allowed"
                 disabled={true}
               />
               <span className="ml-2 text-lg opacity-50">❤️</span>
               <span className="ml-2 text-sm text-gray-400">My Favorites Only</span>
             </label>
-            <div className="absolute left-0 top-full mt-1 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">
-              Login to use favorites
-            </div>
-          </div>
+          </Tooltip>
         </div>
       </div>
 
