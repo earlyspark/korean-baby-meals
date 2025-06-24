@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -75,23 +76,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E084KJ54L3"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-E084KJ54L3');
-            `,
-          }}
-        />
-      </head>
       <body
         className={`${nunitoSans.variable} antialiased`}
       >
         {children}
+        <GoogleAnalytics />
       </body>
     </html>
   );
