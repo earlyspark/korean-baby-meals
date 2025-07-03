@@ -37,7 +37,8 @@ export async function middleware(request: NextRequest) {
   }
   
   try {
-    // Use fetch to check for redirects via API route instead of direct DB connection
+    // Use fetch to check for redirects via API route
+    // Use absolute URL for production compatibility
     const apiUrl = new URL('/api/redirects/check', request.url);
     apiUrl.searchParams.set('slug', slug);
     

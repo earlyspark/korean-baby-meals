@@ -19,19 +19,22 @@ import Script from 'next/script'
  * All analytics tracking MUST go through this consent component.
  */
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-E084KJ54L3'
+const GA_ID = 'G-E084KJ54L3'
 
 export default function GoogleAnalytics() {
   const [consent, setConsent] = useState<boolean | null>(null)
 
   useEffect(() => {
     const storedConsent = localStorage.getItem('ga-consent')
+    console.log('GA Debug: Stored consent:', storedConsent)
+    console.log('GA Debug: GA_ID:', GA_ID)
     if (storedConsent) {
       setConsent(storedConsent === 'true')
     }
   }, [])
 
   const handleAccept = () => {
+    console.log('GA Debug: User accepted cookies')
     setConsent(true)
     localStorage.setItem('ga-consent', 'true')
   }
@@ -50,13 +53,16 @@ export default function GoogleAnalytics() {
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
             strategy="afterInteractive"
+            onLoad={() => console.log('GA Debug: Google Analytics script loaded')}
           />
           <Script id="google-analytics" strategy="afterInteractive">
             {`
+              console.log('GA Debug: Initializing GA with ID: ${GA_ID}');
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GA_ID}');
+              console.log('GA Debug: GA configured');
             `}
           </Script>
         </>

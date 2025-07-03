@@ -17,7 +17,7 @@ interface AdminLayoutProps {
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   // Validate credentials
-  const headersList = headers();
+  const headersList = await headers();
   const authorization = headersList.get('authorization');
   
   // If no authorization header (shouldn't happen due to middleware)

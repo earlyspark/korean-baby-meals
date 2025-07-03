@@ -25,10 +25,12 @@ export default function RecipeEditForm({ recipe }: RecipeEditFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-  // Calculate what the new slug would be
-  const newSlug = useCustomSlug ? customSlug : generateSlug(title);
-  const slugChanged = newSlug !== recipe.slug;
+  // Check if title has changed
   const titleChanged = title !== recipe.title;
+  
+  // Calculate what the new slug would be
+  const newSlug = useCustomSlug ? customSlug : (titleChanged ? generateSlug(title) : recipe.slug);
+  const slugChanged = newSlug !== recipe.slug;
   const hasChanges = titleChanged || slugChanged;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -149,9 +151,10 @@ export default function RecipeEditForm({ recipe }: RecipeEditFormProps) {
               id={`title-${recipe.id}`}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-sand-500 focus:border-sand-500 text-gray-900"
+              className="block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:ring-sand-500 focus:border-sand-500 text-gray-900"
               placeholder="Enter recipe title"
               required
+              autoFocus
             />
           </div>
 
@@ -164,7 +167,13 @@ export default function RecipeEditForm({ recipe }: RecipeEditFormProps) {
                 <input
                   type="checkbox"
                   checked={useCustomSlug}
-                  onChange={(e) => setUseCustomSlug(e.target.checked)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      // Pre-fill with current slug when enabling custom mode
+                      setCustomSlug(recipe.slug);
+                    }
+                    setUseCustomSlug(e.target.checked);
+                  }}
                   className="mr-2 rounded border-gray-300 text-sand-600 focus:ring-sand-500"
                 />
                 Custom slug
@@ -176,14 +185,14 @@ export default function RecipeEditForm({ recipe }: RecipeEditFormProps) {
                 type="text"
                 value={customSlug}
                 onChange={(e) => setCustomSlug(e.target.value)}
-                className="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-sand-500 focus:border-sand-500 text-gray-900"
+                className="block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:ring-sand-500 focus:border-sand-500 text-gray-900"
                 placeholder="custom-url-slug"
-                pattern="[a-z0-9-]+"
+                pattern="[a-z0-9\-]+"
                 title="Only lowercase letters, numbers, and hyphens"
               />
             ) : (
-              <div className="block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md text-gray-900 font-semibold">
-                {generateSlug(title) || 'auto-generated-from-title'}
+              <div className="block w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-500 font-mono text-sm">
+                {titleChanged ? generateSlug(title) : recipe.slug}
               </div>
             )}
             

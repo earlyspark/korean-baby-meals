@@ -80,7 +80,7 @@ export default function AdminDashboard() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
+        <a href="/admin/recipes" className="bg-white rounded-lg shadow p-6 hover:bg-gray-50 transition-colors cursor-pointer">
           <div className="flex items-center">
             <div className="p-2 bg-sand-100 rounded-lg">
               <svg className="w-6 h-6 text-sand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,9 +92,9 @@ export default function AdminDashboard() {
               <p className="text-2xl font-bold text-gray-900">{stats.totalRecipes}</p>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <a href="/admin/redirects" className="bg-white rounded-lg shadow p-6 hover:bg-gray-50 transition-colors cursor-pointer">
           <div className="flex items-center">
             <div className="p-2 bg-turquoise-100 rounded-lg">
               <svg className="w-6 h-6 text-turquoise-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
               <p className="text-2xl font-bold text-gray-900">{stats.totalRedirects}</p>
             </div>
           </div>
-        </div>
+        </a>
 
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center">
@@ -137,55 +137,6 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
-        </div>
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a
-              href="/admin/recipes"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg className="w-8 h-8 text-sand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">Manage Recipes</p>
-                <p className="text-sm text-gray-500">Edit recipe titles and URLs</p>
-              </div>
-            </a>
-
-            <a
-              href="/admin/redirects"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg className="w-8 h-8 text-turquoise-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">View Redirects</p>
-                <p className="text-sm text-gray-500">Monitor URL redirects</p>
-              </div>
-            </a>
-
-            <a
-              href="/"
-              target="_blank"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">View Site</p>
-                <p className="text-sm text-gray-500">Open public website</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
 
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
