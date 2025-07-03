@@ -3,6 +3,22 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
+/**
+ * WARNING: CRITICAL GDPR COMPLIANCE COMPONENT
+ * 
+ * This component handles BOTH cookie consent AND Google Analytics loading.
+ * DO NOT bypass or remove this component - it is required for legal compliance.
+ * 
+ * Features:
+ * - Shows cookie consent banner on first visit
+ * - Stores user consent choice in localStorage
+ * - Only loads Google Analytics AFTER user accepts cookies
+ * - Prevents any tracking if user declines
+ * 
+ * NEVER load Google Analytics scripts directly in layout.tsx or elsewhere.
+ * All analytics tracking MUST go through this consent component.
+ */
+
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-E084KJ54L3'
 
 export default function GoogleAnalytics() {
