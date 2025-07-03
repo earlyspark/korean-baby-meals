@@ -1,54 +1,71 @@
-import { RecipeServerService } from '@/lib/recipes-server';
-import { getConnection } from '@/lib/db';
+'use client';
+
+import { useState, useEffect } from 'react';
+
+interface AdminStats {
+  totalRecipes: number;
+  totalRedirects: number;
+  recentUpdates: any[];
+  recentRedirects: any[];
+}
 
 // Admin dashboard showing key metrics and recent activity
-export default async function AdminDashboard() {
-  let stats = {
+export default function AdminDashboard() {
+  const [stats, setStats] = useState<AdminStats>({
     totalRecipes: 0,
     totalRedirects: 0,
     recentUpdates: [],
     recentRedirects: []
-  };
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    // Get total recipe count
-    const result = await RecipeServerService.getInitialRecipes(1);
-    stats.totalRecipes = result.total_count;
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/admin/stats');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch admin stats');
+        }
+        
+        const data = await response.json();
+        setStats(data);
+      } catch (err) {
+        console.error('Error loading admin stats:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load stats');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    // Get redirect statistics
-    const pool = getConnection();
-    const connection = await pool.getConnection();
-    try {
-      // Total redirects count
-      const [redirectCount] = await connection.execute(
-        'SELECT COUNT(*) as count FROM recipe_redirects'
-      );
-      stats.totalRedirects = (redirectCount as any)[0]?.count || 0;
+    fetchStats();
+  }, []);
 
-      // Recent recipe updates (last 10)
-      const [recentRecipes] = await connection.execute(`
-        SELECT title, slug, updated_at 
-        FROM recipes 
-        ORDER BY updated_at DESC 
-        LIMIT 10
-      `);
-      stats.recentUpdates = recentRecipes as any[];
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+          <p className="mt-2 text-gray-900">Loading dashboard...</p>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sand-600"></div>
+        </div>
+      </div>
+    );
+  }
 
-      // Recent redirects (last 10)
-      const [recentRedirects] = await connection.execute(`
-        SELECT rr.old_slug, rr.new_slug, rr.created_at, r.title
-        FROM recipe_redirects rr
-        JOIN recipes r ON rr.recipe_id = r.id
-        ORDER BY rr.created_at DESC 
-        LIMIT 10
-      `);
-      stats.recentRedirects = recentRedirects as any[];
-
-    } finally {
-      connection.release();
-    }
-  } catch (error) {
-    console.error('Error loading admin stats:', error);
+  if (error) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+          <p className="mt-2 text-red-600">Error: {error}</p>
+        </div>
+      </div>
+    );
   }
 
   return (

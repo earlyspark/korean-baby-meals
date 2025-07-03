@@ -1,4 +1,6 @@
-import { getConnection } from '@/lib/db';
+'use client';
+
+import { useState, useEffect } from 'react';
 
 interface RedirectData {
   id: number;
@@ -10,37 +12,61 @@ interface RedirectData {
 }
 
 // Admin redirects management page
-export default async function AdminRedirects() {
-  let redirects: RedirectData[] = [];
-  let error: string | null = null;
+export default function AdminRedirects() {
+  const [redirects, setRedirects] = useState<RedirectData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    const pool = getConnection();
-    const connection = await pool.getConnection();
-    
-    try {
-      // Get all redirects with recipe information
-      const [redirectRows] = await connection.execute(`
-        SELECT 
-          rr.id,
-          rr.old_slug,
-          rr.new_slug,
-          rr.recipe_id,
-          rr.created_at,
-          r.title as recipe_title
-        FROM recipe_redirects rr
-        JOIN recipes r ON rr.recipe_id = r.id
-        ORDER BY rr.created_at DESC
-      `);
+  useEffect(() => {
+    const fetchRedirects = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/admin/redirects');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch redirects');
+        }
+        
+        const data = await response.json();
+        setRedirects(data.redirects);
+      } catch (err) {
+        console.error('Error loading redirects:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load redirects');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      redirects = redirectRows as RedirectData[];
+    fetchRedirects();
+  }, []);
 
-    } finally {
-      connection.release();
-    }
-  } catch (err) {
-    console.error('Error loading redirects:', err);
-    error = 'Failed to load redirects. Please check the database connection.';
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">URL Redirects</h1>
+            <p className="mt-2 text-gray-900">Loading redirects...</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sand-600"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">URL Redirects</h1>
+            <p className="mt-2 text-red-600">Error: {error}</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

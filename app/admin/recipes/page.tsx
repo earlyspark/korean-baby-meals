@@ -1,19 +1,65 @@
-import { RecipeServerService } from '@/lib/recipes-server';
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Recipe } from '@/types';
 import RecipeEditForm from '@/components/admin/RecipeEditForm';
 
 // Admin recipe management page
-export default async function AdminRecipes() {
-  let recipes: Recipe[] = [];
-  let error: string | null = null;
+export default function AdminRecipes() {
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    // Get all recipes for admin interface
-    const result = await RecipeServerService.getInitialRecipes(100);
-    recipes = result.recipes;
-  } catch (err) {
-    console.error('Error loading recipes:', err);
-    error = 'Failed to load recipes. Please check the database connection.';
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/admin/recipes');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch recipes');
+        }
+        
+        const data = await response.json();
+        setRecipes(data.recipes);
+      } catch (err) {
+        console.error('Error loading recipes:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load recipes');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Recipe Management</h1>
+            <p className="mt-2 text-gray-900">Loading recipes...</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sand-600"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Recipe Management</h1>
+            <p className="mt-2 text-red-600">Error: {error}</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
