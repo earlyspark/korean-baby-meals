@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import AdminNavigation from '@/components/admin/AdminNavigation';
 
 export const metadata: Metadata = {
@@ -14,7 +15,46 @@ interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
+export default async function AdminLayout({ children }: AdminLayoutProps) {
+  // Validate credentials
+  const headersList = headers();
+  const authorization = headersList.get('authorization');
+  
+  // If no authorization header (shouldn't happen due to middleware)
+  if (!authorization) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center p-8 bg-white rounded-lg shadow">
+          <h1 className="text-2xl font-bold mb-4 text-red-600">Authentication Required</h1>
+          <p className="text-gray-600">Please refresh and enter your credentials.</p>
+        </div>
+      </div>
+    );
+  }
+  
+  // Process the authorization header
+  const [scheme, encoded] = authorization.split(' ') || [];
+  
+  if (scheme === 'Basic' && encoded) {
+      const decoded = Buffer.from(encoded, 'base64').toString();
+      const colonIndex = decoded.indexOf(':');
+      const username = decoded.substring(0, colonIndex);
+      const password = decoded.substring(colonIndex + 1);
+      
+      const validUsername = process.env.ADMIN_USERNAME;
+      const validPassword = process.env.ADMIN_PASSWORD;
+      
+      if (!validUsername || !validPassword || username !== validUsername || password !== validPassword) {
+        return (
+          <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="text-center p-8 bg-white rounded-lg shadow">
+              <h1 className="text-2xl font-bold mb-4 text-red-600">Access Denied</h1>
+              <p className="text-gray-600">Invalid username or password.</p>
+            </div>
+          </div>
+        );
+      }
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Admin Header */}

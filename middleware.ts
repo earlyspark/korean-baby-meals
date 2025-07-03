@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // Check if this is an admin route (but not the auth API route itself)
-  if (pathname.startsWith('/admin') && !pathname.startsWith('/api/admin/auth')) {
+  // Check if this is an admin route
+  if (pathname.startsWith('/admin')) {
     // Get the authorization header
     const authorization = request.headers.get('authorization');
     
@@ -18,38 +18,12 @@ export async function middleware(request: NextRequest) {
       });
     }
     
-    try {
-      // Forward the auth check to our API route which has access to runtime env vars
-      const authUrl = new URL('/api/admin/auth', request.url);
-      const authResponse = await fetch(authUrl.toString(), {
-        method: 'GET',
-        headers: {
-          'authorization': authorization,
-        },
-      });
-      
-      if (!authResponse.ok) {
-        // Authentication failed
-        const authHeaders: HeadersInit = {};
-        const wwwAuth = authResponse.headers.get('www-authenticate');
-        if (wwwAuth) {
-          authHeaders['WWW-Authenticate'] = wwwAuth;
-        }
-        
-        return new NextResponse(await authResponse.text(), {
-          status: authResponse.status,
-          headers: authHeaders,
-        });
-      }
-      
-      // Authentication successful, continue to admin page
-    } catch (error) {
-      console.error('Error checking admin auth:', error);
-      return new NextResponse('Authentication service error', { status: 500 });
-    }
+    // Just check that auth header exists - actual validation will happen in server components
+    // This is because Edge Runtime doesn't have access to process.env at runtime
+    return NextResponse.next();
   }
   
-  // Only handle recipe routes
+  // Only handle recipe routes below this point
   if (!pathname.startsWith('/recipes/')) {
     return NextResponse.next();
   }
