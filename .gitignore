@@ -69,3 +69,10 @@ setup-fastcomet.js
 # Documentation (project-specific, keep these in git)
 CLAUDE.md
 DEPLOYMENT.md
+
+# Development planning (contains internal notes)
+FEATURES.md
+
+# Admin files (contains sensitive configurations)
+/public/admin/
+.htpasswd
