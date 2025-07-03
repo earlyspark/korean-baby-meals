@@ -3,6 +3,48 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
+  // Check if this is an admin route
+  if (pathname.startsWith('/admin')) {
+    // Get the authorization header
+    const authorization = request.headers.get('authorization');
+    
+    if (!authorization) {
+      // No auth header, request authentication
+      return new NextResponse('Authentication required', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="Admin Area"',
+        },
+      });
+    }
+    
+    // Parse the authorization header
+    const [scheme, encoded] = authorization.split(' ');
+    
+    if (scheme !== 'Basic') {
+      return new NextResponse('Invalid authentication', { status: 401 });
+    }
+    
+    // Decode credentials
+    const decoded = Buffer.from(encoded, 'base64').toString();
+    const [username, password] = decoded.split(':');
+    
+    // Check credentials against environment variables
+    const validUsername = process.env.ADMIN_USERNAME || 'admin';
+    const validPassword = process.env.ADMIN_PASSWORD || 'password';
+    
+    if (username !== validUsername || password !== validPassword) {
+      return new NextResponse('Invalid credentials', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="Admin Area"',
+        },
+      });
+    }
+    
+    // Valid credentials, continue to admin page
+  }
+  
   // Only handle recipe routes
   if (!pathname.startsWith('/recipes/')) {
     return NextResponse.next();
@@ -53,7 +95,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Only run on recipe routes
+    // Run on recipe routes
     '/recipes/:path*',
+    // Run on admin routes
+    '/admin/:path*',
   ],
 };
