@@ -11,10 +11,11 @@ A comprehensive toddler recipe website focused on Korean and Asian cuisine for c
 - **SEO-Friendly URLs**: Human-readable recipe URLs with automatic redirect preservation
 
 ### Admin Interface
-- **Protected Admin Panel**: Password-protected admin interface at `/admin`
+- **Protected Admin Panel**: HTTP Basic Auth protected admin interface at `/admin`
 - **Recipe Management**: Edit recipe titles and URLs with real-time preview
 - **URL Redirect System**: Automatic 301 redirects preserve SEO when recipe names change
 - **Redirect Monitoring**: Dashboard to view and manage all URL redirects
+- **Statistics Dashboard**: Recipe counts, redirect tracking, and system metrics
 - **Conflict Prevention**: Automatic validation prevents duplicate slugs and redirect loops
 
 ### User Features (Backend Ready)
@@ -61,24 +62,25 @@ A comprehensive toddler recipe website focused on Korean and Asian cuisine for c
    ```
 
 3. **Set up environment variables**
-   Create a `.env.local` file with your database and authentication credentials.
+   Create a `.env.local` file with your configuration.
 
 4. **Set up the database**
    Import the database schema into your MySQL database.
 
-5. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-6. **Run database migrations**
+5. **Run database migrations**
    ```bash
    # Create the recipe redirects table
    mysql -h localhost -u root -p koreanbabymeals < database/001_create_recipe_redirects.sql
    ```
 
+6. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
 7. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
+
 
 
 ---

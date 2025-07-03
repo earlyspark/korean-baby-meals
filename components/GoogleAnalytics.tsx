@@ -3,6 +3,14 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void
+    _gaConfigured: boolean
+  }
+}
+
 /**
  * WARNING: CRITICAL GDPR COMPLIANCE COMPONENT
  * 
@@ -19,22 +27,27 @@ import Script from 'next/script'
  * All analytics tracking MUST go through this consent component.
  */
 
-const GA_ID = 'G-E084KJ54L3'
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-E084KJ54L3'
 
 export default function GoogleAnalytics() {
   const [consent, setConsent] = useState<boolean | null>(null)
+  const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
     const storedConsent = localStorage.getItem('ga-consent')
-    console.log('GA Debug: Stored consent:', storedConsent)
-    console.log('GA Debug: GA_ID:', GA_ID)
     if (storedConsent) {
       setConsent(storedConsent === 'true')
     }
   }, [])
 
+  // Prevent multiple initializations
+  useEffect(() => {
+    if (consent === true && !isInitialized) {
+      setIsInitialized(true)
+    }
+  }, [consent, isInitialized])
+
   const handleAccept = () => {
-    console.log('GA Debug: User accepted cookies')
     setConsent(true)
     localStorage.setItem('ga-consent', 'true')
   }
@@ -48,21 +61,29 @@ export default function GoogleAnalytics() {
 
   return (
     <>
-      {consent === true && (
+      {consent === true && isInitialized && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
             strategy="afterInteractive"
-            onLoad={() => console.log('GA Debug: Google Analytics script loaded')}
+            onLoad={() => {
+              // Ensure gtag is available before configuring
+              if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('config', GA_ID)
+              }
+            }}
           />
           <Script id="google-analytics" strategy="afterInteractive">
             {`
-              console.log('GA Debug: Initializing GA with ID: ${GA_ID}');
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${GA_ID}');
-              console.log('GA Debug: GA configured');
+              
+              // Only configure if not already done
+              if (!window._gaConfigured) {
+                gtag('config', '${GA_ID}');
+                window._gaConfigured = true;
+              }
             `}
           </Script>
         </>

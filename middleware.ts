@@ -47,6 +47,8 @@ export async function middleware(request: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
       },
+      // Add timeout and other options for production reliability
+      signal: AbortSignal.timeout(5000), // 5 second timeout
     });
     
     if (response.ok) {
@@ -58,16 +60,26 @@ export async function middleware(request: NextRequest) {
         // Preserve query parameters if any
         newUrl.search = request.nextUrl.search;
         
-        return NextResponse.redirect(newUrl, 301);
+        // Add debug headers in development
+        const headers: Record<string, string> = {};
+        if (process.env.NODE_ENV === 'development') {
+          headers['X-Redirect-From'] = slug;
+          headers['X-Redirect-To'] = data.newSlug;
+        }
+        
+        return NextResponse.redirect(newUrl, { status: 301, headers });
       }
+    } else {
+      // Log API response issues
+      console.error(`Redirect API returned ${response.status} for slug: ${slug}`);
     }
     
     // No redirect found or API error, continue to normal route handling
     return NextResponse.next();
     
   } catch (error) {
-    // Log error but don't break the request
-    console.error('Error checking recipe redirects:', error);
+    // Log error with more detail
+    console.error('Error checking recipe redirects for slug:', slug, error);
     return NextResponse.next();
   }
 }

@@ -28,10 +28,8 @@ export default function RedirectCheck({ currentSlug }: RedirectCheckProps) {
       }
     };
 
-    // Only run redirect check in production where middleware might fail
-    if (process.env.NODE_ENV === 'production') {
-      checkRedirect();
-    }
+    // Always run redirect check as fallback
+    checkRedirect();
   }, [currentSlug, router]);
 
   return null; // This component renders nothing
