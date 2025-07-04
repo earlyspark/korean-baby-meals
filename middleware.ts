@@ -23,56 +23,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
   
-  // Only handle recipe routes below this point
-  if (!pathname.startsWith('/recipes/')) {
-    return NextResponse.next();
-  }
-  
-  // Extract slug from URL (e.g., /recipes/some-recipe-slug)
-  const slug = pathname.split('/recipes/')[1];
-  
-  // Skip if no slug or if it's a nested path
-  if (!slug || slug.includes('/')) {
-    return NextResponse.next();
-  }
-  
-  try {
-    // Use API route for redirect checking
-    const apiUrl = new URL('/api/redirects/check', request.url);
-    apiUrl.searchParams.set('slug', slug);
-    
-    const response = await fetch(apiUrl.toString(), {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      signal: AbortSignal.timeout(2000),
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      if (data.redirect && data.newSlug) {
-        const newUrl = new URL(`/recipes/${data.newSlug}`, request.url);
-        
-        // Preserve query parameters
-        newUrl.search = request.nextUrl.search;
-        
-        return NextResponse.redirect(newUrl, 301);
-      }
-    }
-    
-    // No redirect found, continue to normal route handling
-    return NextResponse.next();
-    
-  } catch (error) {
-    // Silently fail and continue to normal route handling
-    return NextResponse.next();
-  }
+  // Continue to normal route handling for all other routes
+  return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    // Run on recipe routes
-    '/recipes/:path*',
-    // Run on admin routes
+    // Run on admin routes only
     '/admin/:path*',
   ],
 };

@@ -10,7 +10,6 @@ import FavoriteButton from '@/components/client/FavoriteButton'
 import RatingButton from '@/components/client/RatingButton'
 import { RecipeServerService } from '@/lib/recipes-server'
 import { SEOService } from '@/lib/seo'
-import RedirectCheck from './redirect-check'
 
 // ISR configuration
 export const revalidate = 3600 // Revalidate every hour
@@ -149,8 +148,6 @@ export default async function RecipePage({ params }: { params: { slug: string } 
 
   return (
     <>
-      {/* Client-side redirect check for production */}
-      <RedirectCheck currentSlug={awaitedParams.slug} />
       
       {/* JSON-LD Structured Data */}
       <script

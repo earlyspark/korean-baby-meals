@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
-import AdminNavigation from '@/components/admin/AdminNavigation';
 
 export const metadata: Metadata = {
   title: 'Admin - Korean Baby Meals',
@@ -79,8 +78,6 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
         </div>
       </header>
 
-      {/* Admin Navigation */}
-      <AdminNavigation />
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
