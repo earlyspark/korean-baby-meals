@@ -90,13 +90,10 @@ const renderEatingMethodIcons = (recipe: Recipe) => {
   return icons
 }
 
-// Generate static params for ISR
+// Disable static generation to prevent old slugs from bypassing middleware
+// This ensures all recipe requests go through middleware for redirect checking
 export async function generateStaticParams() {
-  const slugs = await RecipeServerService.getAllRecipeSlugs()
-  
-  return slugs.map((slug) => ({
-    slug: slug,
-  }))
+  return [] // Return empty array to disable static generation
 }
 
 // Generate metadata for SEO

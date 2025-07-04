@@ -11,9 +11,9 @@ A comprehensive toddler recipe website focused on Korean and Asian cuisine for c
 - **SEO-Friendly URLs**: Human-readable recipe URLs with automatic redirect preservation
 
 ### Admin Interface
-- **Protected Admin Panel**: HTTP Basic Auth protected admin interface at `/admin`
+- **Protected Admin Panel**: HTTP Basic Auth protected admin interface
 - **Recipe Management**: Edit recipe titles and URLs with real-time preview
-- **URL Redirect System**: Automatic 301 redirects preserve SEO when recipe names change
+- **URL Redirect System**: Reliable 301 redirects preserve SEO when recipe names change
 - **Redirect Monitoring**: Dashboard to view and manage all URL redirects
 - **Statistics Dashboard**: Recipe counts, redirect tracking, and system metrics
 - **Conflict Prevention**: Automatic validation prevents duplicate slugs and redirect loops
@@ -27,9 +27,10 @@ A comprehensive toddler recipe website focused on Korean and Asian cuisine for c
 ### Technical Features
 - **Responsive Design**: Optimized for both mobile and desktop
 - **SEO Optimized**: Meta tags, structured data, dynamic sitemaps, canonical URLs
-- **Performance**: Efficient database queries with ISR caching
+- **Performance**: Efficient database queries with dynamic rendering
 - **Security**: Input validation, secure authentication, SQL injection prevention
 - **GDPR Compliance**: Cookie consent management for analytics
+- **Reliable Redirects**: 301 redirects that preserve SEO when recipe URLs change
 
 ## 🏗️ Tech Stack
 

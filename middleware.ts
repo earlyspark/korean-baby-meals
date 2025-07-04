@@ -37,49 +37,33 @@ export async function middleware(request: NextRequest) {
   }
   
   try {
-    // Use fetch to check for redirects via API route
-    // Use absolute URL for production compatibility
+    // Use API route for redirect checking
     const apiUrl = new URL('/api/redirects/check', request.url);
     apiUrl.searchParams.set('slug', slug);
     
     const response = await fetch(apiUrl.toString(), {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // Add timeout and other options for production reliability
-      signal: AbortSignal.timeout(5000), // 5 second timeout
+      headers: { 'Content-Type': 'application/json' },
+      signal: AbortSignal.timeout(2000),
     });
     
     if (response.ok) {
       const data = await response.json();
-      
       if (data.redirect && data.newSlug) {
         const newUrl = new URL(`/recipes/${data.newSlug}`, request.url);
         
-        // Preserve query parameters if any
+        // Preserve query parameters
         newUrl.search = request.nextUrl.search;
         
-        // Add debug headers in development
-        const headers: Record<string, string> = {};
-        if (process.env.NODE_ENV === 'development') {
-          headers['X-Redirect-From'] = slug;
-          headers['X-Redirect-To'] = data.newSlug;
-        }
-        
-        return NextResponse.redirect(newUrl, { status: 301, headers });
+        return NextResponse.redirect(newUrl, 301);
       }
-    } else {
-      // Log API response issues
-      console.error(`Redirect API returned ${response.status} for slug: ${slug}`);
     }
     
-    // No redirect found or API error, continue to normal route handling
+    // No redirect found, continue to normal route handling
     return NextResponse.next();
     
   } catch (error) {
-    // Log error with more detail
-    console.error('Error checking recipe redirects for slug:', slug, error);
+    // Silently fail and continue to normal route handling
     return NextResponse.next();
   }
 }

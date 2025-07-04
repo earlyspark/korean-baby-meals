@@ -3,13 +3,6 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
-// Extend Window interface for TypeScript
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void
-    _gaConfigured: boolean
-  }
-}
 
 /**
  * WARNING: CRITICAL GDPR COMPLIANCE COMPONENT
@@ -66,12 +59,6 @@ export default function GoogleAnalytics() {
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
             strategy="afterInteractive"
-            onLoad={() => {
-              // Ensure gtag is available before configuring
-              if (typeof window !== 'undefined' && window.gtag) {
-                window.gtag('config', GA_ID)
-              }
-            }}
           />
           <Script id="google-analytics" strategy="afterInteractive">
             {`

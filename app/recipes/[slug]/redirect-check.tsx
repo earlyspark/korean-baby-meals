@@ -24,7 +24,6 @@ export default function RedirectCheck({ currentSlug }: RedirectCheckProps) {
         }
       } catch (error) {
         // Silently fail - page will load normally
-        console.error('Redirect check failed:', error);
       }
     };
 
