@@ -49,7 +49,6 @@ export async function POST(request: NextRequest) {
 
     return response
   } catch (error) {
-    console.error('Registration error:', error)
     return NextResponse.json(
       { error: 'Failed to create user' },
       { status: 500 }

@@ -1,4 +1,5 @@
 import { Recipe } from '@/types'
+import { formatRecipeEatingMethods, joinEatingMethods } from '@/lib/helpers'
 
 export interface RecipeStructuredData {
   '@context': string
@@ -133,9 +134,11 @@ export class SEOService {
       description += ` Ready in ${recipe.total_time} minutes.`
     }
     
-    if (recipe.eating_method) {
-      const method = recipe.eating_method.replace('_', ' ')
-      description += ` Perfect for ${method}.`
+    // Add eating method info based on boolean fields
+    const eatingMethods = formatRecipeEatingMethods(recipe)
+    
+    if (eatingMethods.length > 0) {
+      description += ` Perfect for ${joinEatingMethods(eatingMethods)}.`
     }
 
     return description.length > 155 

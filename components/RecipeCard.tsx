@@ -48,7 +48,7 @@ const renderEatingMethodIcons = (recipe: Recipe, size: 'sm' | 'md' = 'md') => {
   
   return icons.length > 0 ? icons : [
     <span key="fallback" className="text-sm text-gray-400" title="Eating method not specified">
-      {recipe.eating_method ? FILTER_ICONS.eating_method[recipe.eating_method] : '?'}
+      ?
     </span>
   ]
 }

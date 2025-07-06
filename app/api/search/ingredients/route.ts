@@ -14,7 +14,6 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json({ ingredients })
   } catch (error) {
-    console.error('Ingredient search error:', error)
     return NextResponse.json(
       { error: 'Failed to search ingredients' },
       { status: 500 }

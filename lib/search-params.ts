@@ -1,4 +1,5 @@
 import { SearchFilters } from '@/types'
+import { formatEatingMethods, joinEatingMethods } from '@/lib/helpers'
 
 export interface ParsedSearchParams {
   ingredients: string[]
@@ -18,10 +19,12 @@ export function parseSearchParams(searchParams: URLSearchParams): ParsedSearchPa
   // Parse filters
   const filters: SearchFilters = {}
 
-  // Eating method (array)
-  const eatingMethodParam = searchParams.get('eating_method')
-  if (eatingMethodParam) {
-    filters.eating_method = eatingMethodParam.split(',').map(m => m.trim()) as any
+  // Boolean eating method filters
+  if (searchParams.get('is_finger_food') === 'true') {
+    filters.is_finger_food = true
+  }
+  if (searchParams.get('is_utensil_food') === 'true') {
+    filters.is_utensil_food = true
   }
 
   // Messiness level (array)
@@ -69,8 +72,12 @@ export function buildSearchParams(params: Partial<ParsedSearchParams>): URLSearc
   if (params.filters) {
     const { filters } = params
 
-    if (filters.eating_method && filters.eating_method.length > 0) {
-      searchParams.set('eating_method', filters.eating_method.join(','))
+    if (filters.is_finger_food) {
+      searchParams.set('is_finger_food', 'true')
+    }
+
+    if (filters.is_utensil_food) {
+      searchParams.set('is_utensil_food', 'true')
     }
 
     if (filters.messiness_level && filters.messiness_level.length > 0) {
@@ -114,8 +121,10 @@ export function generateSearchTitle(ingredients: string[], filters: SearchFilter
     parts.push(ingredients.join(' and '))
   }
 
-  if (filters.eating_method && filters.eating_method.length > 0) {
-    parts.push(filters.eating_method.join(' ').replace('_', ' '))
+  const eatingMethods = formatEatingMethods(filters)
+  
+  if (eatingMethods.length > 0) {
+    parts.push(joinEatingMethods(eatingMethods))
   }
 
   if (parts.length === 0) {
@@ -132,9 +141,10 @@ export function generateSearchDescription(ingredients: string[], filters: Search
     description += ` with ${ingredients.join(', ')}`
   }
 
-  if (filters.eating_method && filters.eating_method.length > 0) {
-    const methods = filters.eating_method.map(m => m.replace('_', ' ')).join(' and ')
-    description += `. Perfect for ${methods}`
+  const eatingMethods = formatEatingMethods(filters)
+  
+  if (eatingMethods.length > 0) {
+    description += `. Perfect for ${joinEatingMethods(eatingMethods)}`
   }
 
   description += '. Easy-to-follow instructions and baby-safe ingredients.'

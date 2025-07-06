@@ -37,18 +37,24 @@ export class RecipeServerService {
           FROM recipe_ingredients ri
           JOIN ingredients i ON ri.ingredient_id = i.id
           WHERE ri.recipe_id = ?
-          ORDER BY ri.is_optional ASC, i.name ASC
+          ORDER BY ri.is_optional ASC, 
+                   CASE i.ingredient_category 
+                     WHEN 'dry' THEN 1 
+                     WHEN 'wet' THEN 2 
+                     WHEN 'seasoning' THEN 3 
+                     ELSE 4 
+                   END ASC, 
+                   i.display_order ASC, 
+                   i.name ASC
         `, [recipe.id]) as any[]
 
         recipe.ingredients = ingredients
       } catch (error) {
-        console.error('Error fetching ingredients:', error)
         recipe.ingredients = []
       }
 
       return recipe
     } catch (error) {
-      console.error('Error fetching recipe:', error)
       return null
     }
   }
@@ -64,7 +70,6 @@ export class RecipeServerService {
       
       return results.map(r => r.slug)
     } catch (error) {
-      console.error('Error fetching recipe slugs:', error)
       return []
     }
   }
@@ -102,7 +107,6 @@ export class RecipeServerService {
         total_count
       }
     } catch (error) {
-      console.error('Error fetching initial recipes:', error)
       return { recipes: [], total_count: 0 }
     }
   }
@@ -139,7 +143,6 @@ export class RecipeServerService {
         offset
       })
     } catch (error) {
-      console.error('Error in server-side recipe search:', error)
       return {
         recipes: [],
         almost_matches: [],
@@ -163,7 +166,6 @@ export class RecipeServerService {
       
       return results
     } catch (error) {
-      console.error('Error fetching recipes for sitemap:', error)
       return []
     }
   }

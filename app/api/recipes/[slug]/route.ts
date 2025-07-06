@@ -45,13 +45,11 @@ export async function GET(
 
       recipe.ingredients = ingredients
     } catch (error) {
-      console.error('Error fetching ingredients:', error)
       recipe.ingredients = []
     }
 
     return NextResponse.json({ recipe })
   } catch (error) {
-    console.error('Recipe fetch error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch recipe' },
       { status: 500 }

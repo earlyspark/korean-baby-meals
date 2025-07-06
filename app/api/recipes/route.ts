@@ -37,7 +37,6 @@ export async function GET(request: NextRequest) {
       almost_matches: []
     })
   } catch (error) {
-    console.error('Recipes fetch error:', error)
     // Fallback to sample data if database fails
     const sampleRecipes = [
       {
@@ -51,7 +50,6 @@ export async function GET(request: NextRequest) {
         total_time: 35,
         servings: 4,
         portions_toddler: 8,
-        eating_method: 'fork_friendly',
         is_finger_food: false,
         is_utensil_food: true,
         messiness_level: 'moderate',
@@ -65,7 +63,16 @@ export async function GET(request: NextRequest) {
         meta_description: 'Nutritious Korean-inspired beef and rice bowl for toddlers with mild flavors and tender vegetables.',
         average_rating: 0,
         total_ratings: 0,
-        is_favorited: 0
+        is_favorited: 0,
+        ingredients: [
+          { ingredient_name: 'rice', amount: '1', unit: 'cup', notes: '', is_optional: false },
+          { ingredient_name: 'ground beef', amount: '1/2', unit: 'pound', notes: '', is_optional: false },
+          { ingredient_name: 'sesame oil', amount: '1', unit: 'tablespoon', notes: '', is_optional: false },
+          { ingredient_name: 'carrot', amount: '1', unit: 'medium', notes: 'diced', is_optional: false },
+          { ingredient_name: 'garlic', amount: '1', unit: 'clove', notes: 'minced', is_optional: false },
+          { ingredient_name: 'ginger', amount: '1', unit: 'teaspoon', notes: 'minced', is_optional: false },
+          { ingredient_name: 'soy sauce', amount: '1', unit: 'teaspoon', notes: 'low-sodium', is_optional: false }
+        ]
       },
       {
         id: 2,
@@ -78,7 +85,6 @@ export async function GET(request: NextRequest) {
         total_time: 35,
         servings: 3,
         portions_toddler: 6,
-        eating_method: 'finger_foods',
         is_finger_food: true,
         is_utensil_food: false,
         messiness_level: 'clean',
@@ -92,7 +98,12 @@ export async function GET(request: NextRequest) {
         meta_description: 'Nutritious sweet potato and chicken mash perfect for baby led weaning and toddler meals.',
         average_rating: 0,
         total_ratings: 0,
-        is_favorited: 0
+        is_favorited: 0,
+        ingredients: [
+          { ingredient_name: 'sweet potato', amount: '2', unit: 'large', notes: '', is_optional: false },
+          { ingredient_name: 'chicken breast', amount: '1', unit: 'small', notes: '', is_optional: false },
+          { ingredient_name: 'sesame oil', amount: '1/2', unit: 'teaspoon', notes: '', is_optional: true }
+        ]
       },
       {
         id: 3,
@@ -105,7 +116,6 @@ export async function GET(request: NextRequest) {
         total_time: 25,
         servings: 3,
         portions_toddler: 6,
-        eating_method: 'finger_foods',
         is_finger_food: true,
         is_utensil_food: false,
         messiness_level: 'moderate',
@@ -119,7 +129,15 @@ export async function GET(request: NextRequest) {
         meta_description: 'Healthy tofu and vegetable stir-fry introducing Asian flavors to toddlers in a mild, toddler-friendly way.',
         average_rating: 0,
         total_ratings: 0,
-        is_favorited: 0
+        is_favorited: 0,
+        ingredients: [
+          { ingredient_name: 'firm tofu', amount: '1/2', unit: 'block', notes: '', is_optional: false },
+          { ingredient_name: 'broccoli', amount: '1', unit: 'cup', notes: 'florets', is_optional: false },
+          { ingredient_name: 'carrot', amount: '1', unit: 'medium', notes: 'sliced', is_optional: false },
+          { ingredient_name: 'sesame oil', amount: '1', unit: 'tablespoon', notes: '', is_optional: false },
+          { ingredient_name: 'green onion', amount: '2', unit: 'stalks', notes: 'chopped', is_optional: false },
+          { ingredient_name: 'soy sauce', amount: '1/2', unit: 'teaspoon', notes: 'low-sodium', is_optional: false }
+        ]
       }
     ];
 

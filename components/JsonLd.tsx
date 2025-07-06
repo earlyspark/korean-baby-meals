@@ -27,7 +27,8 @@ export default function JsonLd({ recipe, type = 'website' }: JsonLdProps) {
       "keywords": [
         "korean baby food",
         "toddler recipe",
-        recipe.eating_method.replace('_', ' '),
+        recipe.is_finger_food ? "finger food" : null,
+        recipe.is_utensil_food ? "utensil food" : null,
         recipe.is_freezer_friendly ? "freezer friendly" : null,
         recipe.is_food_processor_friendly ? "food processor friendly" : null
       ].filter(Boolean),

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { Recipe, FILTER_ICONS } from '@/types'
-import { Star, Clock, Users, ChefHat, Hand, Utensils } from 'lucide-react'
+import { Star, Clock, Users, ChefHat } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/Header'
@@ -77,11 +77,11 @@ const renderEatingMethodIcons = (recipe: Recipe) => {
     )
   }
   
-  // Fallback to old system if new fields are not set
-  if (icons.length === 0 && recipe.eating_method) {
+  // Show question mark if no eating method is specified
+  if (icons.length === 0) {
     icons.push(
-      <span key="fallback" className="text-2xl" title={`Eating method: ${recipe.eating_method.replace('_', ' ')}`}>
-        {FILTER_ICONS.eating_method[recipe.eating_method]}
+      <span key="unknown" className="text-2xl text-gray-400" title="Eating method not specified">
+        ?
       </span>
     )
   }
@@ -336,17 +336,16 @@ export default async function RecipePage({ params }: { params: { slug: string } 
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Ingredients */}
                 <div>
+                  {/* Required Ingredients */}
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">
                     Ingredients
                   </h2>
-                  <ul className="space-y-2">
-                    {recipe.ingredients && recipe.ingredients.length > 0 ? 
-                      recipe.ingredients.map((ingredient, index) => (
+                  <ul className="space-y-2 mb-6">
+                    {recipe.ingredients && recipe.ingredients.filter(ingredient => !ingredient.is_optional).length > 0 ? 
+                      recipe.ingredients.filter(ingredient => !ingredient.is_optional).map((ingredient, index) => (
                         <li 
                           key={index} 
-                          className={`flex items-start gap-2 ${
-                            ingredient.is_optional ? 'text-gray-600' : 'text-gray-800'
-                          }`}
+                          className="flex items-start gap-2 text-gray-800"
                         >
                           <span className="text-teal-500 leading-6">•</span>
                           <span className="leading-6">
@@ -356,17 +355,46 @@ export default async function RecipePage({ params }: { params: { slug: string } 
                             <span className="text-gray-800">
                               {ingredient.ingredient_name || ingredient.ingredient?.name || 'Unknown ingredient'}
                             </span>
-                            {Boolean(ingredient.is_optional) && <span className="text-gray-600"> (optional)</span>}
                             {ingredient.notes && (
                               <span className="text-gray-600"> - {ingredient.notes}</span>
                             )}
                           </span>
                         </li>
                       )) : (
-                        <li className="text-gray-600">No ingredients listed</li>
+                        <li className="text-gray-600">No required ingredients listed</li>
                       )
                     }
                   </ul>
+
+                  {/* Optional Ingredients - only show if there are any */}
+                  {recipe.ingredients && recipe.ingredients.filter(ingredient => ingredient.is_optional).length > 0 && (
+                    <>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                        Optional Ingredients
+                      </h3>
+                      <ul className="space-y-2">
+                        {recipe.ingredients.filter(ingredient => ingredient.is_optional).map((ingredient, index) => (
+                          <li 
+                            key={index} 
+                            className="flex items-start gap-2 text-gray-700"
+                          >
+                            <span className="text-teal-400 leading-6">•</span>
+                            <span className="leading-6">
+                              {ingredient.amount && ingredient.unit && (
+                                <strong className="text-gray-700">{ingredient.amount} {ingredient.unit} </strong>
+                              )}
+                              <span className="text-gray-700">
+                                {ingredient.ingredient_name || ingredient.ingredient?.name || 'Unknown ingredient'}
+                              </span>
+                              {ingredient.notes && (
+                                <span className="text-gray-600"> - {ingredient.notes}</span>
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
 
                 {/* Instructions */}
@@ -375,7 +403,7 @@ export default async function RecipePage({ params }: { params: { slug: string } 
                     Instructions
                   </h2>
                   <ol className="space-y-2">
-                    {recipe.instructions.split('\n')
+                    {(recipe.instructions || '').split('\n')
                       .map(step => step.trim())
                       .filter(step => step.length > 0)
                       .map((step, index) => {

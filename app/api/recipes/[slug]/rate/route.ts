@@ -59,7 +59,6 @@ export async function POST(
       rating 
     })
   } catch (error) {
-    console.error('Rating error:', error)
     return NextResponse.json(
       { error: 'Failed to save rating' },
       { status: 500 }

@@ -21,7 +21,6 @@ export interface Recipe {
   total_time?: number
   servings?: number
   portions_toddler?: number
-  eating_method?: EatingMethod // Deprecated - use is_finger_food and is_utensil_food
   is_finger_food: boolean
   is_utensil_food: boolean
   messiness_level: MessinessLevel
@@ -40,10 +39,14 @@ export interface Recipe {
   is_favorited?: boolean
 }
 
+export type IngredientCategory = 'dry' | 'wet' | 'seasoning' | 'other'
+
 export interface Ingredient {
   id: number
   name: string
   aliases: string[]
+  ingredient_category?: IngredientCategory
+  display_order?: number
   created_at: Date
 }
 
@@ -52,6 +55,7 @@ export interface RecipeIngredient {
   recipe_id: number
   ingredient_id: number
   ingredient: Ingredient
+  ingredient_name?: string
   amount?: string
   unit?: string
   notes?: string
@@ -85,11 +89,9 @@ export interface SearchQuery {
   created_at: Date
 }
 
-export type EatingMethod = 'finger_foods' | 'fork_friendly' | 'spoon_friendly' | 'combination'
 export type MessinessLevel = 'clean' | 'moderate' | 'messy'
 
 export interface SearchFilters {
-  eating_method?: EatingMethod[] // Deprecated
   is_finger_food?: boolean
   is_utensil_food?: boolean
   messiness_level?: MessinessLevel[]
@@ -121,7 +123,8 @@ export interface RecipeFormData {
   cook_time?: number
   servings?: number
   portions_toddler?: number
-  eating_method: EatingMethod
+  is_finger_food: boolean
+  is_utensil_food: boolean
   messiness_level: MessinessLevel
   is_freezer_friendly: boolean
   is_food_processor_friendly: boolean
@@ -139,12 +142,6 @@ export interface RecipeFormData {
 }
 
 export interface FilterIcons {
-  eating_method: {
-    finger_foods: string
-    fork_friendly: string
-    spoon_friendly: string
-    combination: string
-  }
   messiness_level: {
     clean: string
     moderate: string
@@ -157,12 +154,6 @@ export interface FilterIcons {
 }
 
 export const FILTER_ICONS: FilterIcons = {
-  eating_method: {
-    finger_foods: '🤏',
-    fork_friendly: '🔱',
-    spoon_friendly: '🥄',
-    combination: '🍴'
-  },
   messiness_level: {
     clean: '🧽',
     moderate: '🧽🧽',

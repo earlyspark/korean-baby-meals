@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise'
+import mysql, { RowDataPacket } from 'mysql2/promise'
 
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
@@ -19,10 +19,9 @@ export const getConnection = () => {
   return pool
 }
 
-export const executeQuery = async (query: string, params: any[] = []) => {
+export const executeQuery = async (query: string, params: (string | number)[] = []): Promise<RowDataPacket[]> => {
   // Check if database is configured
   if (!process.env.DB_HOST && !process.env.DATABASE_URL) {
-    console.warn('No database configuration found. Returning empty results.')
     return []
   }
 
@@ -30,19 +29,18 @@ export const executeQuery = async (query: string, params: any[] = []) => {
   try {
     // Try using query() instead of execute() to avoid prepared statement issues
     const [results] = await connection.query(query, params)
-    return results
+    // Ensure we return an array - results could be RowDataPacket[] or other types
+    return Array.isArray(results) ? results as RowDataPacket[] : []
   } catch (error) {
-    console.error('Database query error:', error)
     // In production, return empty results instead of crashing
     if (process.env.NODE_ENV === 'production') {
-      console.warn('Database connection failed, returning empty results')
       return []
     }
     throw error
   }
 }
 
-export const executeTransaction = async (queries: Array<{ query: string; params: any[] }>) => {
+export const executeTransaction = async (queries: Array<{ query: string; params: (string | number)[] }>) => {
   const connection = await getConnection().getConnection()
   try {
     await connection.beginTransaction()

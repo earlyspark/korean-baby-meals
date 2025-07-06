@@ -12,50 +12,73 @@ interface FilterPanelProps {
 }
 
 export default function FilterPanel({ filters, onFiltersChange, selectedIngredients = [], onClearAll }: FilterPanelProps) {
-  const updateFilter = (key: keyof SearchFilters, value: any) => {
+  const updateFilter = (key: keyof SearchFilters, value: boolean | MessinessLevel[] | undefined) => {
     onFiltersChange({ ...filters, [key]: value })
   }
 
-  const toggleArrayFilter = (key: 'eating_method' | 'messiness_level', value: string) => {
-    const currentArray = filters[key] || []
-    const newArray = currentArray.includes(value as any)
-      ? currentArray.filter(item => item !== value)
-      : [...currentArray, value as any]
+  const toggleBooleanFilter = (key: 'is_finger_food' | 'is_utensil_food' | 'is_freezer_friendly' | 'is_food_processor_friendly') => {
+    const currentValue = filters[key]
+    updateFilter(key, currentValue ? undefined : true)
+  }
+
+  const toggleMessinessLevel = (level: MessinessLevel) => {
+    const currentLevels = filters.messiness_level || []
+    const newLevels = currentLevels.includes(level)
+      ? currentLevels.filter(item => item !== level)
+      : [...currentLevels, level]
     
-    updateFilter(key, newArray.length > 0 ? newArray : undefined)
+    updateFilter('messiness_level', newLevels.length > 0 ? newLevels : undefined)
   }
 
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="font-medium text-gray-900 mb-2">Eating Method</h3>
+        <h3 className="font-medium text-gray-900 mb-2 flex items-center gap-1">
+          Eating Method
+          <Tooltip content="How your toddler will eat this food">
+            <HelpCircle className="w-4 h-4 text-gray-400" />
+          </Tooltip>
+        </h3>
         <div className="space-y-2">
-          <label htmlFor="filter-finger-food" className="flex items-center cursor-pointer">
+          <label htmlFor="filter-finger-food" className="flex items-center cursor-pointer group">
             <input
               id="filter-finger-food"
               name="finger_food"
               type="checkbox"
               checked={filters.is_finger_food || false}
-              onChange={(e) => updateFilter('is_finger_food', e.target.checked ? true : undefined)}
+              onChange={() => toggleBooleanFilter('is_finger_food')}
               className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
-            <span className="ml-2 text-lg">✋</span>
+            <span className="ml-2 text-lg group-hover:scale-110 transition-transform">✋</span>
             <span className="ml-2 text-sm text-gray-700">Finger Foods</span>
+            {filters.is_finger_food && (
+              <span className="ml-auto text-xs text-teal-600 font-medium">Active</span>
+            )}
           </label>
 
-          <label htmlFor="filter-utensil-food" className="flex items-center cursor-pointer">
+          <label htmlFor="filter-utensil-food" className="flex items-center cursor-pointer group">
             <input
               id="filter-utensil-food"
               name="utensil_food"
               type="checkbox"
               checked={filters.is_utensil_food || false}
-              onChange={(e) => updateFilter('is_utensil_food', e.target.checked ? true : undefined)}
+              onChange={() => toggleBooleanFilter('is_utensil_food')}
               className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
-            <span className="ml-2 text-lg">🍴</span>
+            <span className="ml-2 text-lg group-hover:scale-110 transition-transform">🍴</span>
             <span className="ml-2 text-sm text-gray-700">Utensils</span>
+            {filters.is_utensil_food && (
+              <span className="ml-auto text-xs text-teal-600 font-medium">Active</span>
+            )}
           </label>
         </div>
+        
+        {/* Show helpful message when both eating methods are selected */}
+        {filters.is_finger_food && filters.is_utensil_food && (
+          <div className="mt-2 p-2 bg-teal-50 border border-teal-200 rounded text-xs text-teal-700">
+            ✓ Showing recipes that work as both finger foods and with utensils
+          </div>
+        )}
       </div>
 
       <div>
@@ -73,7 +96,7 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
                 name={`messiness_${level}`}
                 type="checkbox"
                 checked={filters.messiness_level?.includes(level as MessinessLevel) || false}
-                onChange={() => toggleArrayFilter('messiness_level', level)}
+                onChange={() => toggleMessinessLevel(level as MessinessLevel)}
                 className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
               />
               <span className="ml-2 text-lg">{icon}</span>
@@ -88,26 +111,26 @@ export default function FilterPanel({ filters, onFiltersChange, selectedIngredie
       <div>
         <h3 className="font-medium text-gray-900 mb-2">Special Features</h3>
         <div className="space-y-2">
-          <label htmlFor="filter-freezer-friendly" className="flex items-center cursor-pointer">
+          <label htmlFor="filter-freezer-friendly" className="flex items-center cursor-pointer group">
             <input
               id="filter-freezer-friendly"
               name="freezer_friendly"
               type="checkbox"
               checked={filters.is_freezer_friendly || false}
-              onChange={(e) => updateFilter('is_freezer_friendly', e.target.checked ? true : undefined)}
+              onChange={() => toggleBooleanFilter('is_freezer_friendly')}
               className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
-            <span className="ml-2 text-lg">{FILTER_ICONS.special.freezer_friendly}</span>
+            <span className="ml-2 text-lg group-hover:scale-110 transition-transform">{FILTER_ICONS.special.freezer_friendly}</span>
             <span className="ml-2 text-sm text-gray-700">Freezer-Friendly</span>
           </label>
 
-          <label htmlFor="filter-food-processor-friendly" className="flex items-center cursor-pointer">
+          <label htmlFor="filter-food-processor-friendly" className="flex items-center cursor-pointer group">
             <input
               id="filter-food-processor-friendly"
               name="food_processor_friendly"
               type="checkbox"
               checked={filters.is_food_processor_friendly || false}
-              onChange={(e) => updateFilter('is_food_processor_friendly', e.target.checked ? true : undefined)}
+              onChange={() => toggleBooleanFilter('is_food_processor_friendly')}
               className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
             />
             <span className="ml-2 text-lg">{FILTER_ICONS.special.food_processor_friendly}</span>

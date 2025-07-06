@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js'
 import { executeQuery } from './db'
-import { Recipe, Ingredient, SearchParams, SearchResults, SearchFilters } from '@/types'
+import { Recipe, Ingredient, SearchParams, SearchResults, SearchFilters, IngredientCategory } from '@/types'
 
 export class RecipeSearchService {
   private static ingredientFuse: Fuse<Ingredient> | null = null
@@ -9,8 +9,8 @@ export class RecipeSearchService {
     if (this.ingredientFuse) return this.ingredientFuse
 
     const ingredients = await executeQuery(`
-      SELECT id, name, aliases FROM ingredients
-    `) as Ingredient[]
+      SELECT id, name, aliases, ingredient_category, display_order, created_at FROM ingredients
+    `) as unknown as Ingredient[]
 
     const searchData = ingredients.map(ingredient => ({
       ...ingredient,
@@ -56,7 +56,6 @@ export class RecipeSearchService {
         r.total_time,
         r.servings,
         r.portions_toddler,
-        r.eating_method,
         r.is_finger_food,
         r.is_utensil_food,
         r.messiness_level,
@@ -75,9 +74,9 @@ export class RecipeSearchService {
       FROM recipes r
     `
 
-    const joins = []
-    const conditions = []
-    const params_array: any[] = []
+    const joins: string[] = []
+    const conditions: string[] = []
+    const params_array: (string | number)[] = []
 
     if (ingredients.length > 0) {
       // Find recipes where you have ALL the ingredients needed for the recipe
@@ -117,21 +116,7 @@ export class RecipeSearchService {
 
     baseQuery += joins.join(' ')
 
-    // Legacy eating method support (deprecated)
-    if (filters.eating_method && filters.eating_method.length > 0) {
-      let eating_methods = [...filters.eating_method]
-      
-      // If multiple eating methods are selected, also include 'combination' recipes
-      if (filters.eating_method.length > 1) {
-        eating_methods.push('combination' as any)
-      }
-      
-      const placeholders = eating_methods.map(() => '?').join(',')
-      conditions.push(`r.eating_method IN (${placeholders})`)
-      params_array.push(...eating_methods)
-    }
-    
-    // New boolean eating method filters
+    // Boolean eating method filters
     const eatingMethodConditions = []
     if (filters.is_finger_food) {
       eatingMethodConditions.push('r.is_finger_food = 1')
@@ -180,31 +165,10 @@ export class RecipeSearchService {
     baseQuery += ` LIMIT ? OFFSET ?`
     params_array.push(limit, offset)
 
-    // Debug logging
-    console.log('Final query:', baseQuery)
-    console.log('Parameters:', params_array)
-    console.log('Parameter count:', params_array.length)
-    
-    // Test: Let's see what ingredients exist
-    try {
-      const allIngredients = await executeQuery('SELECT name FROM ingredients LIMIT 10') as any[]
-      console.log('Sample ingredients in DB:', allIngredients.map(i => i.name))
-    } catch (error) {
-      console.log('Error fetching ingredients:', error)
-    }
-    
-    // Try a much simpler query first
-    const simpleQuery = 'SELECT id, title FROM recipes LIMIT 5'
-    try {
-      const simpleResult = await executeQuery(simpleQuery) as any[]
-      console.log('Simple query result:', simpleResult)
-    } catch (error) {
-      console.log('Simple query error:', error)
-    }
     
     const [initialRecipes, countResult] = await Promise.all([
-      executeQuery(baseQuery, params_array) as Promise<Recipe[]>,
-      executeQuery(countQuery, params_array.slice(0, -2)) as Promise<{total: number}[]>
+      executeQuery(baseQuery, params_array) as unknown as Recipe[],
+      executeQuery(countQuery, params_array.slice(0, -2)) as unknown as {total: number}[]
     ])
 
     let almost_matches: Recipe[] = []
@@ -277,27 +241,38 @@ export class RecipeSearchService {
       LIMIT 5
     `
 
-    const params_array: any[] = []
+    const params_array: string[] = []
     
     // Add ingredient parameters for the LIKE conditions
     ingredients.forEach(ingredient => {
       params_array.push(`%${ingredient}%`)
     })
 
-    return executeQuery(almostMatchQuery, params_array) as Promise<Recipe[]>
+    return executeQuery(almostMatchQuery, params_array) as unknown as Recipe[]
   }
 
-  static async getRecipeIngredients(recipeId: number): Promise<any[]> {
+  static async getRecipeIngredients(recipeId: number): Promise<{ id: number; recipe_id: number; ingredient_id: number; amount?: string; unit?: string; notes?: string; is_optional: boolean; ingredient_name: string; ingredient_aliases: string; ingredient_category?: string; display_order?: number; ingredient_created_at: Date }[]> {
     return executeQuery(`
       SELECT 
         ri.*,
         i.name as ingredient_name,
-        i.aliases as ingredient_aliases
+        i.aliases as ingredient_aliases,
+        i.ingredient_category,
+        i.display_order,
+        i.created_at as ingredient_created_at
       FROM recipe_ingredients ri
       JOIN ingredients i ON ri.ingredient_id = i.id
       WHERE ri.recipe_id = ?
-      ORDER BY ri.is_optional ASC, i.name ASC
-    `, [recipeId])
+      ORDER BY ri.is_optional ASC, 
+               CASE i.ingredient_category 
+                 WHEN 'dry' THEN 1 
+                 WHEN 'wet' THEN 2 
+                 WHEN 'seasoning' THEN 3 
+                 ELSE 4 
+               END ASC, 
+               i.display_order ASC, 
+               i.name ASC
+    `, [recipeId]) as unknown as { id: number; recipe_id: number; ingredient_id: number; amount?: string; unit?: string; notes?: string; is_optional: boolean; ingredient_name: string; ingredient_aliases: string; ingredient_category?: string; display_order?: number; ingredient_created_at: Date }[]
   }
 
   static async enrichRecipesWithIngredients(recipes: Recipe[]): Promise<Recipe[]> {
@@ -315,12 +290,23 @@ export class RecipeSearchService {
         ri.is_optional,
         i.id as ingredient_id,
         i.name,
-        i.aliases
+        i.aliases,
+        i.ingredient_category,
+        i.display_order,
+        i.created_at
       FROM recipe_ingredients ri
       JOIN ingredients i ON ri.ingredient_id = i.id
       WHERE ri.recipe_id IN (${placeholders})
-      ORDER BY ri.recipe_id, ri.is_optional ASC, i.name ASC
-    `, recipeIds) as any[]
+      ORDER BY ri.recipe_id, ri.is_optional ASC, 
+               CASE i.ingredient_category 
+                 WHEN 'dry' THEN 1 
+                 WHEN 'wet' THEN 2 
+                 WHEN 'seasoning' THEN 3 
+                 ELSE 4 
+               END ASC, 
+               i.display_order ASC, 
+               i.name ASC
+    `, recipeIds) as unknown as { recipe_id: number; amount?: string; unit?: string; notes?: string; is_optional: boolean; ingredient_id: number; name: string; aliases: string; ingredient_category?: string; display_order?: number; created_at: Date }[]
 
     // Group ingredients by recipe_id
     const ingredientsByRecipe = ingredients.reduce((acc, ingredient) => {
@@ -331,6 +317,7 @@ export class RecipeSearchService {
         id: ingredient.ingredient_id,
         ingredient_id: ingredient.ingredient_id,
         recipe_id: ingredient.recipe_id,
+        ingredient_name: ingredient.name,
         amount: ingredient.amount,
         unit: ingredient.unit,
         notes: ingredient.notes,
@@ -338,11 +325,14 @@ export class RecipeSearchService {
         ingredient: {
           id: ingredient.ingredient_id,
           name: ingredient.name,
-          aliases: ingredient.aliases
+          aliases: typeof ingredient.aliases === 'string' ? JSON.parse(ingredient.aliases) : ingredient.aliases || [],
+          ingredient_category: ingredient.ingredient_category as IngredientCategory,
+          display_order: ingredient.display_order,
+          created_at: new Date(ingredient.created_at)
         }
       })
       return acc
-    }, {} as Record<number, any[]>)
+    }, {} as Record<number, { id: number; ingredient_id: number; recipe_id: number; ingredient_name: string; amount?: string; unit?: string; notes?: string; is_optional: boolean; ingredient: Ingredient }[]>)
 
     // Attach ingredients to recipes
     return recipes.map(recipe => ({

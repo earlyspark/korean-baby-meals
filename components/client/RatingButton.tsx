@@ -9,7 +9,7 @@ interface RatingButtonProps {
   showTooltip?: boolean
 }
 
-export default function RatingButton() {
+export default function RatingButton({ recipeId, currentRating = 0, showTooltip = false }: RatingButtonProps) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
   }

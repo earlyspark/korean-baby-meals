@@ -12,18 +12,13 @@ export async function GET(request: NextRequest) {
     
     const filters: SearchFilters = {}
     
-    // Legacy eating method support (deprecated)
-    const eatingMethodParam = searchParams.get('eating_method')
-    if (eatingMethodParam) {
-      filters.eating_method = eatingMethodParam.split(',') as any
-    }
     
-    // New boolean eating method filters
-    if (searchParams.get('finger_food') === 'true') {
+    // Boolean eating method filters
+    if (searchParams.get('is_finger_food') === 'true') {
       filters.is_finger_food = true
     }
     
-    if (searchParams.get('utensil_food') === 'true') {
+    if (searchParams.get('is_utensil_food') === 'true') {
       filters.is_utensil_food = true
     }
     
@@ -32,11 +27,11 @@ export async function GET(request: NextRequest) {
       filters.messiness_level = messinessParam.split(',') as any
     }
     
-    if (searchParams.get('freezer_friendly') === 'true') {
+    if (searchParams.get('is_freezer_friendly') === 'true') {
       filters.is_freezer_friendly = true
     }
     
-    if (searchParams.get('food_processor_friendly') === 'true') {
+    if (searchParams.get('is_food_processor_friendly') === 'true') {
       filters.is_food_processor_friendly = true
     }
     
@@ -75,7 +70,6 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(results)
   } catch (error) {
-    console.error('Recipe search error:', error)
     return NextResponse.json(
       { error: 'Failed to search recipes' },
       { status: 500 }

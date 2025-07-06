@@ -57,7 +57,6 @@ export async function PUT(
     }
 
   } catch (error) {
-    console.error('Error updating recipe title:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

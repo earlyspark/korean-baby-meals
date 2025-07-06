@@ -48,7 +48,6 @@ export async function POST(
       is_favorited: true 
     })
   } catch (error) {
-    console.error('Favorite error:', error)
     return NextResponse.json(
       { error: 'Failed to add favorite' },
       { status: 500 }
@@ -102,7 +101,6 @@ export async function DELETE(
       is_favorited: false 
     })
   } catch (error) {
-    console.error('Unfavorite error:', error)
     return NextResponse.json(
       { error: 'Failed to remove favorite' },
       { status: 500 }
