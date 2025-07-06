@@ -1,0 +1,82 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plateGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f8f8"/>
+    </linearGradient>
+    <radialGradient id="pancakeGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ffeaa7"/>
+      <stop offset="100%" style="stop-color:#fdcb6e"/>
+    </radialGradient>
+    <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fdf6e3"/>
+  
+  <!-- Wooden highchair tray -->
+  <rect x="0" y="350" width="800" height="250" fill="#deb887" opacity="0.4"/>
+  <rect x="0" y="370" width="800" height="4" fill="#cd853f" opacity="0.3"/>
+  
+  <!-- White baby plate -->
+  <ellipse cx="400" cy="320" rx="160" ry="140" fill="url(#plateGradient)" stroke="#e0e0e0" stroke-width="3"/>
+  <ellipse cx="400" cy="315" rx="150" ry="130" fill="#ffffff"/>
+  
+  <!-- Stack of 3 banana oat pancakes -->
+  <!-- Bottom pancake -->
+  <ellipse cx="400" cy="340" rx="45" ry="40" fill="url(#pancakeGradient)"/>
+  <ellipse cx="395" cy="335" rx="35" ry="30" fill="#fff3cd" opacity="0.7"/>
+  
+  <!-- Middle pancake -->
+  <ellipse cx="400" cy="320" rx="45" ry="40" fill="url(#pancakeGradient)"/>
+  <ellipse cx="395" cy="315" rx="35" ry="30" fill="#fff3cd" opacity="0.7"/>
+  
+  <!-- Top pancake -->
+  <ellipse cx="400" cy="300" rx="45" ry="40" fill="url(#pancakeGradient)"/>
+  <ellipse cx="395" cy="295" rx="35" ry="30" fill="#fff3cd" opacity="0.7"/>
+  
+  <!-- Banana slices on top -->
+  <ellipse cx="380" cy="285" rx="8" ry="7" fill="#fff8dc" stroke="#f4d03f" stroke-width="1"/>
+  <ellipse cx="378" cy="283" rx="5" ry="4" fill="#f4d03f" opacity="0.5"/>
+  
+  <ellipse cx="405" cy="280" rx="8" ry="7" fill="#fff8dc" stroke="#f4d03f" stroke-width="1"/>
+  <ellipse cx="403" cy="278" rx="5" ry="4" fill="#f4d03f" opacity="0.5"/>
+  
+  <ellipse cx="420" cy="290" rx="8" ry="7" fill="#fff8dc" stroke="#f4d03f" stroke-width="1"/>
+  <ellipse cx="418" cy="288" rx="5" ry="4" fill="#f4d03f" opacity="0.5"/>
+  
+  <!-- Oat texture visible in pancakes -->
+  <ellipse cx="385" cy="305" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="415" cy="310" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="390" cy="325" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="410" cy="330" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="375" cy="340" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="425" cy="345" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  
+  <!-- Cut piece showing fluffy interior -->
+  <path d="M 450 300 L 480 300 L 480 340 L 450 340 Z" fill="url(#pancakeGradient)"/>
+  <path d="M 450 300 L 480 300 L 480 320 L 450 320 Z" fill="#fff8dc"/>
+  <circle cx="465" cy="310" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="470" cy="315" r="1.5" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Steam rising from warm pancakes -->
+  <path d="M 380 250 Q 385 230 380 210 Q 375 190 380 170" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 400 245 Q 405 225 400 205 Q 395 185 400 165" stroke="url(#steamGradient)" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 420 250 Q 425 230 420 210 Q 415 190 420 170" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Baby spoon -->
+  <ellipse cx="300" cy="360" rx="12" ry="8" fill="#ffb3ba" stroke="#ff9999" stroke-width="1"/>
+  <rect x="285" y="358" width="60" height="4" fill="#ff9999" rx="2"/>
+  
+  <!-- Scattered banana pieces on plate -->
+  <ellipse cx="320" cy="300" rx="6" ry="5" fill="#fff8dc" stroke="#f4d03f" stroke-width="1"/>
+  <ellipse cx="520" cy="320" rx="6" ry="5" fill="#fff8dc" stroke="#f4d03f" stroke-width="1"/>
+  
+  <!-- Small crumbs for realism -->
+  <circle cx="350" cy="380" r="2" fill="#fdcb6e" opacity="0.7"/>
+  <circle cx="460" cy="370" r="1.5" fill="#fdcb6e" opacity="0.7"/>
+  <circle cx="480" cy="350" r="2" fill="#fdcb6e" opacity="0.7"/>
+</svg>

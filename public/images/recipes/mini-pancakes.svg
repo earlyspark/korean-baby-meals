@@ -1,0 +1,77 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plateGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f8f8"/>
+    </linearGradient>
+    <radialGradient id="pancakeGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#daa520"/>
+    </radialGradient>
+    <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#faf8f5"/>
+  
+  <!-- Wooden table surface -->
+  <rect x="0" y="400" width="800" height="200" fill="#deb887" opacity="0.3"/>
+  <rect x="0" y="420" width="800" height="3" fill="#cd853f" opacity="0.2"/>
+  
+  <!-- White plate -->
+  <ellipse cx="400" cy="320" rx="180" ry="160" fill="url(#plateGradient)" stroke="#e0e0e0" stroke-width="2"/>
+  <ellipse cx="400" cy="315" rx="170" ry="150" fill="#ffffff"/>
+  
+  <!-- Mini pancakes arranged in a appealing pattern -->
+  <!-- Back row -->
+  <ellipse cx="340" cy="280" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="400" cy="275" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="460" cy="280" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  
+  <!-- Middle row -->
+  <ellipse cx="320" cy="320" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="380" cy="315" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="420" cy="315" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="480" cy="320" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  
+  <!-- Front row -->
+  <ellipse cx="350" cy="355" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="410" cy="350" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  <ellipse cx="450" cy="355" rx="25" ry="22" fill="url(#pancakeGradient)"/>
+  
+  <!-- Golden brown texture on pancakes -->
+  <ellipse cx="335" cy="275" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="395" cy="270" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="455" cy="275" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="315" cy="315" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="375" cy="310" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="415" cy="310" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="475" cy="315" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="345" cy="350" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="405" cy="345" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  <ellipse cx="445" cy="350" rx="15" ry="13" fill="#ffed4e" opacity="0.7"/>
+  
+  <!-- Small butter pats on a few pancakes -->
+  <ellipse cx="400" cy="275" rx="8" ry="6" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="420" cy="315" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="410" cy="350" rx="7" ry="5" fill="#fff8dc" opacity="0.9"/>
+  
+  <!-- Steam wisps from warm pancakes -->
+  <path d="M 340 240 Q 345 220 340 200 Q 335 180 340 160" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 400 235 Q 405 215 400 195 Q 395 175 400 155" stroke="url(#steamGradient)" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 460 240 Q 465 220 460 200 Q 455 180 460 160" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Small fork for toddler -->
+  <rect x="520" y="340" width="80" height="3" fill="#c0c0c0" rx="1"/>
+  <rect x="515" y="338" width="12" height="7" fill="#c0c0c0" rx="1"/>
+  <rect x="518" y="335" width="2" height="3" fill="#c0c0c0"/>
+  <rect x="522" y="335" width="2" height="3" fill="#c0c0c0"/>
+  <rect x="526" y="335" width="2" height="3" fill="#c0c0c0"/>
+  
+  <!-- Syrup drizzle on one stack -->
+  <path d="M 395 270 Q 400 275 405 280 Q 410 285 415 290" stroke="#daa520" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M 418 310 Q 423 315 428 320 Q 425 325 420 330" stroke="#daa520" stroke-width="2" fill="none" opacity="0.8"/>
+</svg>

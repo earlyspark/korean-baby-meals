@@ -1,0 +1,119 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bowlGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f8f8"/>
+    </linearGradient>
+    <radialGradient id="beefGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </radialGradient>
+    <radialGradient id="broccoliGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#32cd32"/>
+      <stop offset="100%" style="stop-color:#228b22"/>
+    </radialGradient>
+    <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fdf8f5"/>
+  
+  <!-- Wooden table surface -->
+  <rect x="0" y="400" width="800" height="200" fill="#deb887" opacity="0.4"/>
+  <rect x="0" y="420" width="800" height="4" fill="#cd853f" opacity="0.3"/>
+  
+  <!-- Rice cooker in background -->
+  <rect x="600" y="300" width="120" height="200" rx="15" fill="#2c3e50"/>
+  <rect x="605" y="305" width="110" height="190" rx="10" fill="#34495e"/>
+  <circle cx="660" cy="360" r="20" fill="#95a5a6"/>
+  <circle cx="660" cy="360" r="15" fill="#ecf0f1"/>
+  <rect x="610" y="430" width="100" height="12" rx="6" fill="#e74c3c"/>
+  
+  <!-- Large serving bowl -->
+  <ellipse cx="350" cy="350" rx="200" ry="140" fill="url(#bowlGradient)" stroke="#e0e0e0" stroke-width="3"/>
+  <ellipse cx="350" cy="345" rx="190" ry="130" fill="#ffffff"/>
+  
+  <!-- Rice base -->
+  <ellipse cx="350" cy="350" rx="180" ry="120" fill="#f8f8f8"/>
+  
+  <!-- Individual rice grains scattered throughout -->
+  <ellipse cx="300" cy="340" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="330" cy="350" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="370" cy="345" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="400" cy="355" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="320" cy="370" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="380" cy="375" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="280" cy="360" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="420" cy="340" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="310" cy="320" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="390" cy="325" rx="3" ry="1.5" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Beef pieces -->
+  <ellipse cx="280" cy="330" rx="20" ry="15" fill="url(#beefGradient)"/>
+  <ellipse cx="280" cy="328" rx="16" ry="12" fill="#cd853f" opacity="0.6"/>
+  
+  <ellipse cx="350" cy="320" rx="25" ry="18" fill="url(#beefGradient)"/>
+  <ellipse cx="350" cy="318" rx="20" ry="15" fill="#cd853f" opacity="0.6"/>
+  
+  <ellipse cx="420" cy="335" rx="22" ry="16" fill="url(#beefGradient)"/>
+  <ellipse cx="420" cy="333" rx="18" ry="13" fill="#cd853f" opacity="0.6"/>
+  
+  <ellipse cx="310" cy="370" rx="18" ry="14" fill="url(#beefGradient)"/>
+  <ellipse cx="310" cy="368" rx="14" ry="11" fill="#cd853f" opacity="0.6"/>
+  
+  <ellipse cx="390" cy="360" rx="20" ry="15" fill="url(#beefGradient)"/>
+  <ellipse cx="390" cy="358" rx="16" ry="12" fill="#cd853f" opacity="0.6"/>
+  
+  <!-- Broccoli florets -->
+  <circle cx="320" cy="340" r="12" fill="url(#broccoliGradient)"/>
+  <circle cx="320" cy="338" r="9" fill="#90ee90" opacity="0.7"/>
+  <path d="M 315 335 Q 320 330 325 335" stroke="#006400" stroke-width="1" fill="none"/>
+  <path d="M 317 342 Q 320 337 323 342" stroke="#006400" stroke-width="1" fill="none"/>
+  
+  <circle cx="380" cy="350" r="14" fill="url(#broccoliGradient)"/>
+  <circle cx="380" cy="348" r="11" fill="#90ee90" opacity="0.7"/>
+  <path d="M 374 345 Q 380 340 386 345" stroke="#006400" stroke-width="1" fill="none"/>
+  <path d="M 376 352 Q 380 347 384 352" stroke="#006400" stroke-width="1" fill="none"/>
+  
+  <circle cx="360" cy="375" r="10" fill="url(#broccoliGradient)"/>
+  <circle cx="360" cy="373" r="7" fill="#90ee90" opacity="0.7"/>
+  <path d="M 356 370 Q 360 365 364 370" stroke="#006400" stroke-width="1" fill="none"/>
+  
+  <circle cx="400" cy="350" r="11" fill="url(#broccoliGradient)"/>
+  <circle cx="400" cy="348" r="8" fill="#90ee90" opacity="0.7"/>
+  <path d="M 396 345 Q 400 340 404 345" stroke="#006400" stroke-width="1" fill="none"/>
+  
+  <circle cx="330" cy="380" r="10" fill="url(#broccoliGradient)"/>
+  <circle cx="330" cy="378" r="7" fill="#90ee90" opacity="0.7"/>
+  <path d="M 326 375 Q 330 370 334 375" stroke="#006400" stroke-width="1" fill="none"/>
+  
+  <circle cx="410" cy="380" r="12" fill="url(#broccoliGradient)"/>
+  <circle cx="410" cy="378" r="9" fill="#90ee90" opacity="0.7"/>
+  <path d="M 405 375 Q 410 370 415 375" stroke="#006400" stroke-width="1" fill="none"/>
+  
+  <!-- Sauce glisten and oil -->
+  <ellipse cx="350" cy="350" rx="60" ry="40" fill="#daa520" opacity="0.3"/>
+  <ellipse cx="330" cy="340" rx="30" ry="20" fill="#daa520" opacity="0.3"/>
+  <ellipse cx="380" cy="365" rx="40" ry="25" fill="#daa520" opacity="0.3"/>
+  
+  <!-- Steam rising -->
+  <path d="M 300 280 Q 305 260 300 240 Q 295 220 300 200" stroke="url(#steamGradient)" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 350 275 Q 355 255 350 235 Q 345 215 350 195" stroke="url(#steamGradient)" stroke-width="4" fill="none" opacity="0.7"/>
+  <path d="M 400 280 Q 405 260 400 240 Q 395 220 400 200" stroke="url(#steamGradient)" stroke-width="3" fill="none" opacity="0.6"/>
+  
+  <!-- Baby spoon -->
+  <ellipse cx="480" cy="420" rx="15" ry="10" fill="#ffb3ba" stroke="#ff9999" stroke-width="2"/>
+  <rect x="460" y="417" width="70" height="6" fill="#ff9999" rx="3"/>
+  <circle cx="465" cy="420" r="3" fill="#ff6b6b"/>
+  
+  <!-- Small scattered ingredients around bowl -->
+  <circle cx="520" cy="340" r="2" fill="#228b22" opacity="0.7"/>
+  <circle cx="290" cy="280" r="1.5" fill="#a0522d" opacity="0.7"/>
+  <circle cx="510" cy="380" r="2" fill="#228b22" opacity="0.7"/>
+  <circle cx="280" cy="400" r="1.5" fill="#a0522d" opacity="0.7"/>
+  <ellipse cx="525" cy="360" rx="2" ry="1" fill="#ffffff" opacity="0.8"/>
+  <ellipse cx="275" cy="320" rx="2" ry="1" fill="#ffffff" opacity="0.8"/>
+</svg>

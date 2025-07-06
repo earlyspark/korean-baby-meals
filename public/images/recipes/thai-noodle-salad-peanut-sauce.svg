@@ -1,0 +1,89 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#faf9f7"/>
+  
+  <!-- Large serving bowl -->
+  <ellipse cx="400" cy="370" rx="230" ry="150" fill="#ffffff"/>
+  <ellipse cx="400" cy="370" rx="220" ry="140" fill="#f8f9fa" stroke="#e9ecef" stroke-width="2"/>
+  
+  <!-- Rice noodles base -->
+  <ellipse cx="400" cy="375" rx="200" ry="125" fill="#fffef7"/>
+  
+  <!-- Individual rice noodles - curved and scattered -->
+  <path d="M 250 350 Q 300 340 350 355 Q 400 370 450 350" stroke="#f5f5dc" stroke-width="4" fill="none"/>
+  <path d="M 280 380 Q 330 365 380 380 Q 430 395 480 375" stroke="#f5f5dc" stroke-width="4" fill="none"/>
+  <path d="M 270 410 Q 320 395 370 410 Q 420 425 470 405" stroke="#f5f5dc" stroke-width="4" fill="none"/>
+  <path d="M 290 330 Q 340 315 390 330 Q 440 345 490 325" stroke="#f5f5dc" stroke-width="4" fill="none"/>
+  <path d="M 260 390 Q 310 375 360 390 Q 410 405 460 385" stroke="#f5f5dc" stroke-width="4" fill="none"/>
+  
+  <!-- Red cabbage strips -->
+  <ellipse cx="320" cy="340" rx="15" ry="8" fill="#800080"/>
+  <ellipse cx="320" cy="340" rx="12" ry="6" fill="#9932cc"/>
+  <ellipse cx="450" cy="365" rx="18" ry="10" fill="#800080"/>
+  <ellipse cx="450" cy="365" rx="15" ry="8" fill="#9932cc"/>
+  <ellipse cx="380" cy="400" rx="16" ry="9" fill="#800080"/>
+  <ellipse cx="380" cy="400" rx="13" ry="7" fill="#9932cc"/>
+  
+  <!-- Carrot julienne -->
+  <ellipse cx="350" cy="360" rx="12" ry="4" fill="#ff8c00"/>
+  <ellipse cx="420" cy="380" rx="14" ry="5" fill="#ff8c00"/>
+  <ellipse cx="460" cy="340" rx="10" ry="3" fill="#ff8c00"/>
+  <ellipse cx="330" cy="395" rx="13" ry="4" fill="#ff8c00"/>
+  
+  <!-- Edamame beans scattered -->
+  <ellipse cx="360" cy="340" rx="4" ry="3" fill="#90EE90"/>
+  <ellipse cx="365" cy="343" rx="4" ry="3" fill="#90EE90"/>
+  <ellipse cx="410" cy="360" rx="4" ry="3" fill="#90EE90"/>
+  <ellipse cx="415" cy="363" rx="4" ry="3" fill="#90EE90"/>
+  <ellipse cx="340" cy="380" rx="4" ry="3" fill="#90EE90"/>
+  <ellipse cx="440" cy="395" rx="4" ry="3" fill="#90EE90"/>
+  
+  <!-- Peanut sauce drizzle -->
+  <ellipse cx="400" cy="360" rx="80" ry="50" fill="url(#peanutSauce)" opacity="0.7"/>
+  <ellipse cx="370" cy="380" rx="60" ry="35" fill="url(#peanutSauce)" opacity="0.5"/>
+  <ellipse cx="430" cy="375" rx="50" ry="30" fill="url(#peanutSauce)" opacity="0.6"/>
+  
+  <!-- Crushed peanuts on top -->
+  <ellipse cx="380" cy="335" rx="3" ry="2" fill="#deb887"/>
+  <ellipse cx="385" cy="338" rx="2.5" ry="1.5" fill="#deb887"/>
+  <ellipse cx="420" cy="345" rx="3" ry="2" fill="#deb887"/>
+  <ellipse cx="425" cy="348" rx="2.5" ry="1.5" fill="#deb887"/>
+  <ellipse cx="360" cy="355" rx="3" ry="2" fill="#deb887"/>
+  <ellipse cx="440" cy="370" rx="3" ry="2" fill="#deb887"/>
+  <ellipse cx="390" cy="390" rx="2.5" ry="1.5" fill="#deb887"/>
+  
+  <!-- Sesame seeds sprinkled -->
+  <circle cx="350" cy="350" r="1.5" fill="#f5f5dc"/>
+  <circle cx="370" cy="365" r="1.5" fill="#f5f5dc"/>
+  <circle cx="410" cy="355" r="1.5" fill="#f5f5dc"/>
+  <circle cx="430" cy="380" r="1.5" fill="#f5f5dc"/>
+  <circle cx="390" cy="375" r="1.5" fill="#f5f5dc"/>
+  
+  <!-- Fresh lime wedge on side -->
+  <path d="M 550 360 L 580 340 L 580 380 Z" fill="#32cd32"/>
+  <path d="M 555 365 L 575 345 L 575 385 Z" fill="#90ee90"/>
+  <circle cx="565" cy="365" r="2" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Chopsticks -->
+  <rect x="480" y="420" width="90" height="3" rx="1.5" fill="#d4a574" transform="rotate(25 525 421.5)"/>
+  <rect x="480" y="427" width="90" height="3" rx="1.5" fill="#d4a574" transform="rotate(25 525 428.5)"/>
+  
+  <!-- Small sauce bowl -->
+  <ellipse cx="180" cy="450" rx="40" ry="25" fill="#8b4513"/>
+  <ellipse cx="180" cy="445" rx="35" ry="20" fill="#deb887"/>
+  <ellipse cx="180" cy="440" rx="30" ry="15" fill="#d2b48c"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <radialGradient id="peanutSauce" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#deb887;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#cd853f;stop-opacity:0.3"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Herb garnish (cilantro/basil) -->
+  <ellipse cx="365" cy="320" rx="8" ry="4" fill="#228b22" transform="rotate(15 365 320)"/>
+  <ellipse cx="365" cy="320" rx="6" ry="3" fill="#32cd32" transform="rotate(15 365 320)"/>
+  <ellipse cx="435" cy="325" rx="7" ry="3" fill="#228b22" transform="rotate(-20 435 325)"/>
+  <ellipse cx="435" cy="325" rx="5" ry="2" fill="#32cd32" transform="rotate(-20 435 325)"/>
+</svg>

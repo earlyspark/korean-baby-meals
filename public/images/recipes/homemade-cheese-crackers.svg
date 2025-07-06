@@ -1,0 +1,144 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plateGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f5f5f5"/>
+    </linearGradient>
+    <radialGradient id="crackerGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#daa520"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#faf8f3"/>
+  
+  <!-- Wooden cutting board -->
+  <rect x="150" y="200" width="500" height="300" fill="#deb887" rx="10"/>
+  <rect x="150" y="220" width="500" height="4" fill="#cd853f" opacity="0.3"/>
+  <rect x="150" y="240" width="500" height="2" fill="#cd853f" opacity="0.2"/>
+  
+  <!-- Scattered cheese crackers -->
+  <!-- Row 1 -->
+  <rect x="200" y="240" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="215" cy="255" r="2" fill="#b8860b"/>
+  
+  <rect x="250" y="245" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="265" cy="260" r="2" fill="#b8860b"/>
+  
+  <rect x="300" y="240" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="315" cy="255" r="2" fill="#b8860b"/>
+  
+  <rect x="350" y="245" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="365" cy="260" r="2" fill="#b8860b"/>
+  
+  <rect x="400" y="240" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="415" cy="255" r="2" fill="#b8860b"/>
+  
+  <rect x="450" y="245" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="465" cy="260" r="2" fill="#b8860b"/>
+  
+  <rect x="500" y="240" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="515" cy="255" r="2" fill="#b8860b"/>
+  
+  <!-- Row 2 -->
+  <rect x="175" y="290" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="190" cy="305" r="2" fill="#b8860b"/>
+  
+  <rect x="225" y="295" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="240" cy="310" r="2" fill="#b8860b"/>
+  
+  <rect x="275" y="290" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="290" cy="305" r="2" fill="#b8860b"/>
+  
+  <rect x="325" y="295" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="340" cy="310" r="2" fill="#b8860b"/>
+  
+  <rect x="375" y="290" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="390" cy="305" r="2" fill="#b8860b"/>
+  
+  <rect x="425" y="295" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="440" cy="310" r="2" fill="#b8860b"/>
+  
+  <rect x="475" y="290" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="490" cy="305" r="2" fill="#b8860b"/>
+  
+  <rect x="525" y="295" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="540" cy="310" r="2" fill="#b8860b"/>
+  
+  <!-- Row 3 -->
+  <rect x="200" y="340" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="215" cy="355" r="2" fill="#b8860b"/>
+  
+  <rect x="250" y="345" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="265" cy="360" r="2" fill="#b8860b"/>
+  
+  <rect x="300" y="340" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="315" cy="355" r="2" fill="#b8860b"/>
+  
+  <rect x="350" y="345" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="365" cy="360" r="2" fill="#b8860b"/>
+  
+  <rect x="400" y="340" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="415" cy="355" r="2" fill="#b8860b"/>
+  
+  <rect x="450" y="345" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="465" cy="360" r="2" fill="#b8860b"/>
+  
+  <rect x="500" y="340" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="515" cy="355" r="2" fill="#b8860b"/>
+  
+  <!-- Row 4 -->
+  <rect x="175" y="390" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="190" cy="405" r="2" fill="#b8860b"/>
+  
+  <rect x="225" y="395" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="240" cy="410" r="2" fill="#b8860b"/>
+  
+  <rect x="275" y="390" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="290" cy="405" r="2" fill="#b8860b"/>
+  
+  <rect x="325" y="395" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="340" cy="410" r="2" fill="#b8860b"/>
+  
+  <rect x="375" y="390" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="390" cy="405" r="2" fill="#b8860b"/>
+  
+  <rect x="425" y="395" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="440" cy="410" r="2" fill="#b8860b"/>
+  
+  <rect x="475" y="390" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="490" cy="405" r="2" fill="#b8860b"/>
+  
+  <rect x="525" y="395" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="540" cy="410" r="2" fill="#b8860b"/>
+  
+  <!-- Row 5 -->
+  <rect x="200" y="440" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="215" cy="455" r="2" fill="#b8860b"/>
+  
+  <rect x="250" y="445" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="265" cy="460" r="2" fill="#b8860b"/>
+  
+  <rect x="300" y="440" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="315" cy="455" r="2" fill="#b8860b"/>
+  
+  <rect x="350" y="445" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="365" cy="460" r="2" fill="#b8860b"/>
+  
+  <rect x="400" y="440" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="415" cy="455" r="2" fill="#b8860b"/>
+  
+  <rect x="450" y="445" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="465" cy="460" r="2" fill="#b8860b"/>
+  
+  <rect x="500" y="440" width="30" height="30" fill="url(#crackerGradient)" rx="2"/>
+  <circle cx="515" cy="455" r="2" fill="#b8860b"/>
+  
+  <!-- Crumbs for realistic touch -->
+  <circle cx="235" cy="275" r="1" fill="#daa520" opacity="0.8"/>
+  <circle cx="310" cy="325" r="1.5" fill="#daa520" opacity="0.8"/>
+  <circle cx="385" cy="375" r="1" fill="#daa520" opacity="0.8"/>
+  <circle cx="460" cy="275" r="1" fill="#daa520" opacity="0.8"/>
+  <circle cx="520" cy="425" r="1.5" fill="#daa520" opacity="0.8"/>
+</svg>

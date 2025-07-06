@@ -1,0 +1,102 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plateGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f8f8"/>
+    </linearGradient>
+    <radialGradient id="pattyGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ff8c42"/>
+      <stop offset="100%" style="stop-color:#ff7518"/>
+    </radialGradient>
+    <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fdf8f5"/>
+  
+  <!-- Wooden baking sheet -->
+  <rect x="100" y="180" width="600" height="350" fill="#deb887" opacity="0.6"/>
+  <rect x="110" y="190" width="580" height="330" fill="#f5deb3"/>
+  
+  <!-- Parchment paper -->
+  <rect x="120" y="200" width="560" height="310" fill="#ffffff" opacity="0.9" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Sweet potato quinoa patties arranged on baking sheet -->
+  <!-- Top row -->
+  <ellipse cx="200" cy="280" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="195" cy="275" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <ellipse cx="320" cy="275" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="315" cy="270" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <ellipse cx="440" cy="280" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="435" cy="275" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <ellipse cx="560" cy="275" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="555" cy="270" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <!-- Bottom row -->
+  <ellipse cx="200" cy="380" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="195" cy="375" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <ellipse cx="320" cy="375" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="315" cy="370" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <ellipse cx="440" cy="380" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="435" cy="375" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <ellipse cx="560" cy="375" rx="40" ry="35" fill="url(#pattyGradient)"/>
+  <ellipse cx="555" cy="370" rx="30" ry="25" fill="#ffb366" opacity="0.7"/>
+  
+  <!-- Quinoa texture visible in patties -->
+  <circle cx="190" cy="275" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="205" cy="285" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="310" cy="270" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="325" cy="280" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="430" cy="275" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="445" cy="285" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="550" cy="270" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="565" cy="280" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  
+  <circle cx="190" cy="375" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="205" cy="385" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="310" cy="370" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="325" cy="380" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="430" cy="375" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="445" cy="385" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="550" cy="370" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  <circle cx="565" cy="380" r="1.5" fill="#f0e68c" opacity="0.8"/>
+  
+  <!-- Cheese melted spots -->
+  <ellipse cx="195" cy="280" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="315" cy="275" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="435" cy="280" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="555" cy="275" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="195" cy="380" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="315" cy="375" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="435" cy="380" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="555" cy="375" rx="6" ry="4" fill="#fff8dc" opacity="0.9"/>
+  
+  <!-- Steam from warm patties -->
+  <path d="M 200 240 Q 205 220 200 200 Q 195 180 200 160" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 320 235 Q 325 215 320 195 Q 315 175 320 155" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M 440 240 Q 445 220 440 200 Q 435 180 440 160" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 560 235 Q 565 215 560 195 Q 555 175 560 155" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Golden brown edges -->
+  <ellipse cx="200" cy="280" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="320" cy="275" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="440" cy="280" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="560" cy="275" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="200" cy="380" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="320" cy="375" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="440" cy="380" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="560" cy="375" rx="38" ry="33" fill="none" stroke="#d2691e" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Spatula in corner -->
+  <rect x="680" y="420" width="80" height="8" fill="#c0c0c0" rx="4" transform="rotate(30 720 424)"/>
+  <rect x="675" y="415" width="20" height="18" fill="#8b4513" rx="3" transform="rotate(30 685 424)"/>
+</svg>

@@ -1,0 +1,87 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plateGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f8f8"/>
+    </linearGradient>
+    <radialGradient id="pumpkinPancakeGradient" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ffa500"/>
+      <stop offset="100%" style="stop-color:#ff8c00"/>
+    </radialGradient>
+    <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fdf7f0"/>
+  
+  <!-- Autumn leaves scattered background -->
+  <path d="M 100 100 Q 120 80 140 100 Q 120 120 100 100" fill="#d2691e" opacity="0.3"/>
+  <path d="M 650 150 Q 670 130 690 150 Q 670 170 650 150" fill="#cd853f" opacity="0.3"/>
+  <path d="M 150 450 Q 170 430 190 450 Q 170 470 150 450" fill="#daa520" opacity="0.3"/>
+  
+  <!-- Wooden table -->
+  <rect x="0" y="400" width="800" height="200" fill="#deb887" opacity="0.4"/>
+  <rect x="0" y="420" width="800" height="4" fill="#cd853f" opacity="0.3"/>
+  
+  <!-- Ceramic plate with autumn colors -->
+  <ellipse cx="400" cy="320" rx="170" ry="150" fill="#f5deb3" stroke="#deb887" stroke-width="3"/>
+  <ellipse cx="400" cy="315" rx="160" ry="140" fill="#faf8f5"/>
+  
+  <!-- Stack of pumpkin pancakes -->
+  <!-- Bottom pancake -->
+  <ellipse cx="400" cy="350" rx="50" ry="45" fill="url(#pumpkinPancakeGradient)"/>
+  <ellipse cx="395" cy="345" rx="40" ry="35" fill="#ffb84d" opacity="0.7"/>
+  
+  <!-- Middle pancake -->
+  <ellipse cx="400" cy="325" rx="50" ry="45" fill="url(#pumpkinPancakeGradient)"/>
+  <ellipse cx="395" cy="320" rx="40" ry="35" fill="#ffb84d" opacity="0.7"/>
+  
+  <!-- Top pancake -->
+  <ellipse cx="400" cy="300" rx="50" ry="45" fill="url(#pumpkinPancakeGradient)"/>
+  <ellipse cx="395" cy="295" rx="40" ry="35" fill="#ffb84d" opacity="0.7"/>
+  
+  <!-- Butter pat melting on top -->
+  <ellipse cx="400" cy="285" rx="12" ry="9" fill="#fff8dc" opacity="0.9"/>
+  <ellipse cx="398" cy="283" rx="8" ry="6" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Oat texture visible in pancakes -->
+  <ellipse cx="385" cy="305" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="415" cy="310" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="380" cy="330" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="420" cy="335" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="375" cy="355" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  <ellipse cx="425" cy="360" rx="2" ry="1" fill="#daa520" opacity="0.6"/>
+  
+  <!-- Maple syrup drizzle -->
+  <path d="M 395 280 Q 390 285 385 290 Q 380 295 375 300" stroke="#cd853f" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M 405 285 Q 410 290 415 295 Q 420 300 425 305" stroke="#cd853f" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M 400 290 Q 395 295 390 300 Q 385 305 380 310" stroke="#cd853f" stroke-width="2" fill="none" opacity="0.8"/>
+  
+  <!-- Steam wisps -->
+  <path d="M 370 250 Q 375 230 370 210 Q 365 190 370 170" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 400 245 Q 405 225 400 205 Q 395 185 400 165" stroke="url(#steamGradient)" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 430 250 Q 435 230 430 210 Q 425 190 430 170" stroke="url(#steamGradient)" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Fork -->
+  <rect x="520" y="340" width="80" height="3" fill="#c0c0c0" rx="1"/>
+  <rect x="515" y="338" width="12" height="7" fill="#c0c0c0" rx="1"/>
+  <rect x="518" y="335" width="2" height="3" fill="#c0c0c0"/>
+  <rect x="522" y="335" width="2" height="3" fill="#c0c0c0"/>
+  <rect x="526" y="335" width="2" height="3" fill="#c0c0c0"/>
+  <rect x="530" y="335" width="2" height="3" fill="#c0c0c0"/>
+  
+  <!-- Pumpkin seeds as garnish -->
+  <ellipse cx="480" cy="280" rx="4" ry="2" fill="#f0e68c" transform="rotate(15 480 280)"/>
+  <ellipse cx="490" cy="300" rx="4" ry="2" fill="#f0e68c" transform="rotate(-20 490 300)"/>
+  <ellipse cx="320" cy="290" rx="4" ry="2" fill="#f0e68c" transform="rotate(30 320 290)"/>
+  
+  <!-- Cinnamon dust sprinkled on plate -->
+  <circle cx="460" cy="350" r="1" fill="#8b4513" opacity="0.6"/>
+  <circle cx="470" cy="360" r="1" fill="#8b4513" opacity="0.6"/>
+  <circle cx="340" cy="340" r="1" fill="#8b4513" opacity="0.6"/>
+  <circle cx="350" cy="370" r="1" fill="#8b4513" opacity="0.6"/>
+  <circle cx="320" cy="350" r="1" fill="#8b4513" opacity="0.6"/>
+</svg>
