@@ -65,6 +65,7 @@ Thumbs.db
 
 # Deployment scripts
 setup-fastcomet.js
+build-production.sh
 
 # Documentation (project-specific, keep these in git)
 CLAUDE.md
