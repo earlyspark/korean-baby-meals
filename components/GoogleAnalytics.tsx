@@ -20,7 +20,7 @@ import Script from 'next/script'
  * All analytics tracking MUST go through this consent component.
  */
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-E084KJ54L3'
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export default function GoogleAnalytics() {
   const [consent, setConsent] = useState<boolean | null>(null)
